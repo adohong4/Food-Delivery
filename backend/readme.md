@@ -41,3 +41,15 @@ Tạo đường dẫn tới quản trị viên
 - Sử dụng Toast để hiển thị thông báo sau mỗi lần thêm hoặc xóa
 - Xây dựng giao diện form Add trong Pages: kết nối với backend để lấy dữ liệu, sử dụng react hooks: useState, xây dựng các function như: Submit, lấy hình ảnh
 - Xây dựng giao diện form List: function fetchList để hiện item trong data, sử dụng map(item, index) để in giá trị, xây dựng removeItem
+
+
+Tạo xác thực tài khoản (login, register)
+- xây dựng route login, register trong backend
+- xây dựng function login, register trong userController
+- sử dụng bcrypt, jwt, validate
+
+Xây dựng giao diện và kết nối từ frontend sang backend
+- xây dựng function onChangeHandler, onLogin
+- kết nối backend
+- xây dựng lại trạng thái giao diện sau khi đăng nhập, đăng xuất
+- sử dựng localStorage để lưu giữ tạm thời token tài khoản
