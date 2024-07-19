@@ -53,3 +53,7 @@ Xây dựng giao diện và kết nối từ frontend sang backend
 - kết nối backend
 - xây dựng lại trạng thái giao diện sau khi đăng nhập, đăng xuất
 - sử dựng localStorage để lưu giữ tạm thời token tài khoản
+
+Xây dựng fetch data
+- xây dựng fetch data trong StoreContext để lấy data từ mongodb
+- sử dụng url để fetch data từ Be sang Fe
