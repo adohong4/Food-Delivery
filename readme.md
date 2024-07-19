@@ -31,3 +31,13 @@ Thêm, hiển thị, xóa list
 - code các function add, list,  remove
 - export tới foodRoute trong file route
 - test chức năng thông qua công cụ Thunder Client
+
+Tạo đường dẫn tới quản trị viên
+- tạo thư mục admin
+- xây dựng giao diện admin: addfood, listfood, listorders
+- kết nối admin với backend thông qua đường dẫn backend url="http://localhost:${port}
+- sử dụng route để truyền dẫn api
+- xây dụng navbar, sidebar. Sidebar hiển thị form giao diện addfood, listfood, listorders
+- Sử dụng Toast để hiển thị thông báo sau mỗi lần thêm hoặc xóa
+- Xây dựng giao diện form Add trong Pages: kết nối với backend để lấy dữ liệu, sử dụng react hooks: useState, xây dựng các function như: Submit, lấy hình ảnh
+- Xây dựng giao diện form List: function fetchList để hiện item trong data, sử dụng map(item, index) để in giá trị, xây dựng removeItem
