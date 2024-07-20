@@ -3,23 +3,22 @@ import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, description, image }) => {
 
-    //const [itemCount, setItemCount] = useState(0);
-    // use useContext instead of useState
+export const FoodItem = ({ id, name, price, description, image }) => {
+
     const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext)
 
     return (
         <div className='food-item'>
             <div className="food-item-img-container">
-                <img className="food-item-img" src={url + "/images/" + image} alt="" />
-                {!cartItems[id]  //change itemCount to cartItems[id]
-                    ? <img onClick={() => addToCart(id)} src={assets.add_icon_white} alt="" className="add" />
-                    //chage setItemCount(prev=>prev+-1), itemCount, to addToCart or removeFromCart, itemCount
+                <img src={url + "/images/" + image} alt="" className="food-item-image" />
+                {!cartItems[id]
+                    ? <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt="" />
                     : <div className='food-item-counter'>
                         <img onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt="" />
                         <p>{cartItems[id]}</p>
                         <img onClick={() => addToCart(id)} src={assets.add_icon_green} alt="" />
+
                     </div>
                 }
             </div>
@@ -28,13 +27,13 @@ const FoodItem = ({ id, name, price, description, image }) => {
                     <p>{name}</p>
                     <img src={assets.rating_starts} alt="" />
                 </div>
-                <p className="food-item-desc">{description}</p>
+                <p className="food-item-description">{description}</p>
                 <p className="food-item-price">${price}</p>
-
             </div>
         </div>
     )
 }
+
 
 
 export default FoodItem
