@@ -58,3 +58,40 @@ Xây dựng fetch data
 - xây dựng fetch data trong StoreContext để lấy data từ mongodb
 - sử dụng url để fetch data từ Be sang Fe
 
+Shop Cart Functionality
+- tạo file cartController, tạo các function addCart, removeCart, getCart
+- truyền dẫn route qua cartRoute và server,js
+- Tạo file auth.js trong Middleware, sử dụng jwt để xây dựng và xác thực người dùng.
+- xay dựng nốt các function add, remove, get 
+- sử dụng thunder client để test đường dẫn
+- xây dựng và truyền url BE tới các function addToCart, removeFromCart trong StoreContext
+
+Tạo order trong BE và cổng thanh toán
+- xây dựng noSQL trong orderModel và truyền dẫn tới orderController
+- xây dựng orderController với import Stripe, userModel, userModel
+- xây dựng oder của người dùng tới FE
+- xây dựng function, trong đó có tạo đường dẫn tới nơi thanh toán Stripe
+- sử dụng thunder client để test đường dẫn
+- tại PlaceOrder trong FE, xây dựng function setData, onChaneHandler, placeOrder
+
+Verify
+- xay dựng nốt function verify trong orderController
+- tạo verify trong pages FE
+- xây dựng function và sử dựng axios để lấy route từ BE
+
+My Order là nơi ấn thanh toán xong, sẽ tạo hóa đơn user ở đó
+- xây dựng funtion userOrder trong orderController
+- tạo các route, test đường dẫn trong thunder client
+- tạo file MyOrder và css nó
+- tạo 2 đường dẫn ở logo user: MyOrder và Logout, css nó
+- tạo fetchOrder và setData trong MyOrder.jsx
+- tạo useEffect để truyền dãn link tới cart, 1 là chưa đăng nhập ấn thanh toán sẽ tới cart, đăng nhập nhưng ko có hàng, ấn thanh toán sẽ tới cart
+
+Tạo Order Page trong file Admin
+- tạo các user, list, update trong orderController
+- truyền route và test thunder client
+- xây dựng nốt file order và css
+- sử dụng axios để láy route trong BE
+- fetchAllOrder để in toàn bộ order ng dùng trong Mongo
+- statusHandler để cập nhật trạng thái tới PlaceOrder
+

@@ -10,7 +10,7 @@ export const Sidebar = () => {
                 <div className="sidebar-options">
                     <NavLink to='/add' className="sidebar-option">
                         <img src={assets.add_icon} alt="" />
-                        <p>add item</p>
+                        <p>Add item</p>
                     </NavLink>
                     <NavLink to='/list' className="sidebar-option">
                         <img src={assets.order_icon} alt="" />
@@ -18,7 +18,7 @@ export const Sidebar = () => {
                     </NavLink>
                     <NavLink to='/orders' className="sidebar-option">
                         <img src={assets.order_icon} alt="" />
-                        <p>oders item</p>
+                        <p>Oders item</p>
                     </NavLink>
                 </div>
             </div>
