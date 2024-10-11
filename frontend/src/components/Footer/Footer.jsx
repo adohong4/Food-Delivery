@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='footer' id='footer'>
             <div className="footer-content">
                 <div className="footer-content-left">
-                    <img src={assets.logo} alt="" />
+                    <img src={assets.logo_2} alt="" />
                     <p>Lorem Ipsum is simply dummy text of printing and typesetting. Lorem Ipsum</p>
                     <div className="footer-social-icons">
                         <img src={assets.facebook_icon} alt="" />
