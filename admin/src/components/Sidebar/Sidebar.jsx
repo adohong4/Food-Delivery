@@ -16,6 +16,10 @@ export const Sidebar = () => {
                         <i className="bi bi-list-ul"></i>
                         <p>List item</p>
                     </NavLink>
+                    <NavLink to='/user' className="sidebar-option">
+                        <i className="bi bi-box"></i>
+                        <p>User</p>
+                    </NavLink>
                     <NavLink to='/orders' className="sidebar-option">
                         <i className="bi bi-box"></i>
                         <p>Orders item</p>

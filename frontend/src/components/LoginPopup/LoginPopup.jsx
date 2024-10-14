@@ -25,11 +25,18 @@ const LoginPopup = ({ setShowLogin }) => {
     const onLogin = async (event) => {
         event.preventDefault()
         let newUrl = url;
+
+        // if (data.email === "admin@gmail.com" && data.password === "12345678") {
+        //     let newUrl = "http://localhost:5174/";
+        // } else {
         if (currState === 'Login') {
             newUrl += "/api/user/login"
         } else {
             newUrl += "/api/user/register"
         }
+        // }
+
+
         const response = await axios.post(newUrl, data);
 
         if (response.data.success) {
