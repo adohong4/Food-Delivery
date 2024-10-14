@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
     res.send("API Working")
 })
 
-//api enpoints;
+//api endpoints;
 app.use("/api/food", foodRouter)
 app.use("/images", express.static('upload'))
 app.use("/api/user", userRouter)

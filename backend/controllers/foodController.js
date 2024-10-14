@@ -4,7 +4,6 @@ import fs from 'fs';
 
 
 // add food item
-
 const addFood = async (req, res) => {
     try {
         let image_filename = "";
@@ -55,6 +54,40 @@ const removeFood = async (req, res) => {
     }
 }
 
+//update food
+const updateFood = async (req, res) => {
+    try {
+        const foodId = req.params.id;
+        const food = await foodModel.findById(foodId);
+
+        if (!food) {
+            return res.status(404).json({ success: false, message: "Food not found" });
+        }
+
+        const updates = {
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category
+        };
+
+        // check new pictures?
+        if (req.file) {
+            // delete old picture
+            fs.unlink(`upload/${food.image}`, () => { })
+
+            updates.image = req.file.filename; // update picture
+        }
+
+        // update
+        const updatedFood = await foodModel.findByIdAndUpdate(foodId, updates, { new: true });
+
+        res.json({ success: true, message: "Food Updated", data: updatedFood });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error.message });
+    }
+}
 
 
-export { addFood, listFood, removeFood };
+export { addFood, listFood, removeFood, updateFood };

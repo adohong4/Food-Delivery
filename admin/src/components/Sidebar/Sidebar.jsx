@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 export const Sidebar = () => {
     return (
-        <div class="section-sidebar">
+        <div className="section-sidebar">
             <div className="sidebar">
                 <div className="sidebar-options">
                     <NavLink to='/add' className="sidebar-option">

@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
     const { name, password, email } = req.body;
     try {
         //checking is user already exists
-        const exists = await userModel.findOne({ email });
+        const exists = await userModel.findOne({ email }); //khai báo xem tk đăng ký đã có trong db
         if (exists) {
             return res.json({ success: false, message: "User already exists" })
         }
@@ -58,6 +58,7 @@ const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        //return db
         const newUser = new userModel({
             name: name,
             email: email,
@@ -75,4 +76,23 @@ const registerUser = async (req, res) => {
     }
 }
 
-export { loginUser, registerUser };
+//get all list user
+const listUser = async (req, res) => {
+    try {
+        const users = await userModel.find({})
+
+        const filteredUsers = users.map(user => ({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password
+        }));
+
+        res.json({ success: true, data: filteredUsers })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+export { loginUser, registerUser, listUser };

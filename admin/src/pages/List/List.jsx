@@ -61,7 +61,7 @@ const List = ({ url }) => {
             formData.append('image', newImage);
         }
 
-        const response = await axios.post(`${url}/api/food/update`, formData, {
+        const response = await axios.put(`${url}/api/food/update/${currentFood._id}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
 
@@ -83,6 +83,8 @@ const List = ({ url }) => {
     const handleImageChange = (e) => {
         setNewImage(e.target.files[0]);
     };
+
+
 
     return (
         <div className='list add flex-col'>

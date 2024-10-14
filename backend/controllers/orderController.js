@@ -51,6 +51,7 @@ const placeOrder = async (req, res) => {
     }
 }
 
+//verify Order
 const verifyOrder = async (req, res) => {
     const { orderId, success } = req.body;
     try {
