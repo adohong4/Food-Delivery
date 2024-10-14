@@ -3,6 +3,8 @@ import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const Navbar = ({ setShowLogin }) => {
@@ -21,32 +23,85 @@ const Navbar = ({ setShowLogin }) => {
     }
 
     return (
-        <div className='navbar'>
-            <Link to='/'><img src={assets.logo} alt="" className='logo' /></Link>
-            <ul className="navbar-menu">
-                <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
-                <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
-                <a href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>Mobile-app</a>
-                <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact us</a>
-            </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link to="/" className="col-2 navbar-brand">
+                <img src={assets.logo} alt="Logo" className="logo" />
+            </Link>
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav mx-auto">
+                    <li className="nav-item">
+                        <Link to="/" onClick={() => { setMenu("home"); }} className={`nav-link ${menu === "home" ? "active" : ""}`}>
+                            Home
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <a href="#explore-menu" onClick={() => { setMenu("menu"); }} className={`nav-link ${menu === "menu" ? "active" : ""}`}>
+                            Menu
+                        </a>
+                    </li>
+                    <li className="nav-item">
+                        <a href="#app-download" onClick={() => { setMenu("mobile-app"); }} className={`nav-link ${menu === "mobile-app" ? "active" : ""}`}>
+                            Mobile App
+                        </a>
+                    </li>
+                    <li className="nav-item">
+                        <a href="#footer" onClick={() => { setMenu("contact-us"); }} className={`nav-link ${menu === "contact-us" ? "active" : ""}`}>
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
 
-            <div className="navbar-right">
-                <img src={assets.search_icon} alt="" />
-                <div className="navbar-search-icon">
-                    <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
-                    <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+                <div className="col-xl-3 navbar-right d-flex align-items-center">
+                    <div className="navbar-search-icon col-2 me-1">
+                        <img src={assets.search_icon} alt="Search" />
+                    </div>
+                    <div className="navbar-search-icon col-2 me-1">
+                        <Link to="/cart">
+                            <img src={assets.basket_icon} alt="Cart" />
+                        </Link>
+                        <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+                    </div>
+                    {!token ? (
+                        <button className="btn btn-signin btn-primary" onClick={() => {
+                            console.log("Sign in clicked");
+                            setShowLogin(true);
+                        }}>
+                            Sign in
+                        </button>
+                    ) : (
+                        <div className="navbar-profile dropdown">
+                            <img
+                                src={assets.profile_icon}
+                                alt="Profile"
+                                className="dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            />
+                            <ul className="navbar-profile-dropdown dropdown-menu">
+                                <li onClick={() => navigate('/myorders')} className="dropdown-item">
+                                    <img src={assets.bag_icon} alt="" /><p>Orders</p>
+                                </li>
+                                <hr className="dropdown-divider" />
+                                <li onClick={logout} className="dropdown-item">
+                                    <img src={assets.logout_icon} alt="" /><p>Logout</p>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
-                {!token ? <button onClick={() => setShowLogin(true)}>Sign in</button> : <div className="navbar-profile">
-                    <img src={assets.profile_icon} alt="" />
-                    <ul className="navbar-profile-dropdown">
-                        <li onClick={() => navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-                        <hr />
-                        <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
-                    </ul>
-                </div>}
-
             </div>
-        </div>
+        </nav>
     )
 }
 

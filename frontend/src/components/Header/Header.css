@@ -1,35 +1,38 @@
-.header {
-    height: 34vw;
-    margin: 30px auto;
-    background: url('/header_img.png') no-repeat;
-    background-size: contain;
+.nav {
+    height: 45vw;
+    /* width: 100vw;  */
+    margin: 0 auto; 
+    background: url(/header_img.png) no-repeat center center; 
+    background-size: cover; 
     position: relative;
+    overflow: hidden; 
 }
 
-.header-contents {
+
+.nav-contents {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 10%;
-    left: 6vw;
+    bottom: 30%;
+    left: 10vw;
     animation: fadeIn 3s;
 }
 
-.header-contents h2 {
+.nav-contents h2 {
     font-weight: 500;
     color: white;
     font-size: max(4.5vw, 22px);
 }
 
-.header-contents p {
+.nav-contents p {
     color: white;
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 
-.header-contents button {
+.nav-contents button {
     border: none;
     color: #747474;
     font-weight: 500;
@@ -38,28 +41,76 @@
     font-size: max(1vw, 13px);
     border-radius: 50px;
     cursor: pointer;
+    font-size: 1.5rem;
 }
+
 
 @media (max-width: 1050px) {
-    .header {
-        height: 38vw;
+    .nav {
+        height: 45vw;
     }
 
-    .header-contents {
+    .nav-contents {
         max-width: 45%;
+    }
+
+    .nav-contents h2 {
+        font-size: max(4vw, 18px);
+    }
+
+    .nav-contents p {
+        font-size: 1.3vw;
+    }
+
+    .nav-contents button {
+        font-size: 1.2rem;
+        padding: 1.5vw 3vw;
     }
 }
 
+
 @media (max-width: 750px) {
-    .header-contents {
+    .nav {
+        height: 60vw; 
+    }
+
+    .nav-contents {
         max-width: 65%;
+        left: 5vw; 
     }
 
-    .header-contents p {
-        display: none;
+    .nav-contents h2 {
+        font-size: max(3.5vw, 16px); 
     }
 
-    .header-contents button {
+    .nav-contents p {
+        display: none; 
+    }
+
+    .nav-contents button {
         padding: 2vw 4vw;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        height: 70vw;
+        background-size: cover; 
+    }
+
+    .nav-contents {
+        max-width: 80%; 
+        left: 5vw;
+        gap: 10px;
+    }
+
+    .nav-contents h2 {
+        font-size: max(3vw, 14px);
+    }
+
+    .nav-contents button {
+        padding: 3vw 6vw;
+        font-size: 1rem;
     }
 }

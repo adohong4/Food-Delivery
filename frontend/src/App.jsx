@@ -7,7 +7,11 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
-import MyOrders from './pages/MyOrders/MyOrders'
+import MyOrders from './pages/MyOrders/MyOrders'  
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';  
+import 'bootstrap/dist/js/bootstrap.bundle.min'; 
+
 
 const App = () => {
 

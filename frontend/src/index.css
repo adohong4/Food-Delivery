@@ -7,7 +7,9 @@
   font-family: Outfit;
   scroll-behavior: smooth;
 }
-
+#root{
+  width: 100%;
+}
 body {
   min-width: 100vh;
 }
@@ -18,8 +20,7 @@ a {
 }
 
 .app {
-  width: 80%;
-  margin: auto;
+  width: 100%;
 }
 
 @keyframes fadeIn {

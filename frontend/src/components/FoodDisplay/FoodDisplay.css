@@ -4,13 +4,42 @@
 
 .food-display h2 {
     font-size: max(2vw, 24px);
-    font-weight: 600;
+    color: #ff5722;
+    font-weight: 500;
+    text-align: center;
 }
 
 .food-display-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* Thiết lập 4 cột */
     margin-top: 30px;
-    gap: 30px;
-    row-gap: 50px;
+    gap: 30px; 
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.food-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.food-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .food-display-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột cho màn hình nhỏ hơn */
+    }
+}
+
+@media (max-width: 480px) {
+    .food-display-list {
+        grid-template-columns: 1fr; /* 1 cột cho màn hình rất nhỏ */
+    }
 }
