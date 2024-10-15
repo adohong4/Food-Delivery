@@ -7,7 +7,7 @@ import axios from "axios";
 import { assets } from '../../assets/assets';
 import ReactPaginate from 'react-paginate';
 
-const Foods = ({ url }) => {
+const Orders = ({ url }) => {
     const [orders, setOrders] = useState([]);
     const [totalOrder, setTotalOrder] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
@@ -93,7 +93,6 @@ const Foods = ({ url }) => {
                 pageCount={totalPages}
                 previousLabel="<"
                 renderOnZeroPageCount={null}
-
 
                 pageClassName="page-item"
                 pageLinkClassName="page-link" previousClassName="page-item"
