@@ -7,7 +7,7 @@ import axios from "axios";
 import { assets } from '../../assets/assets';
 import ReactPaginate from 'react-paginate';
 
-const Orders = ({ url }) => {
+const Foods = ({ url }) => {
     const [orders, setOrders] = useState([]);
     const [totalOrder, setTotalOrder] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
@@ -18,7 +18,7 @@ const Orders = ({ url }) => {
         if (response.data.success) {
             setOrders(response.data.data)
             console.log(response.data.data);
-            setTotalOrder(response.data.totalOrder)
+            setTotalOrder(response.data.totalOrders)
             setTotalPages(response.data.totalPages)
         }
         else {
@@ -77,6 +77,7 @@ const Orders = ({ url }) => {
                         <p>Items:{order.items.length}</p>
                         <p>${order.amount}</p>
                         <select onChange={(event) => statusHandler(event, order._id)} value={order.status}>
+                            <option value="Wait for confirmation">Wait for confirmation</option>
                             <option value="Food processing">Food processing</option>
                             <option value="Out for delivery">Out for delivery</option>
                             <option value="Delivered">Delivered</option>

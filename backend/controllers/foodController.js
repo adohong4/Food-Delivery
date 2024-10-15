@@ -89,5 +89,30 @@ const updateFood = async (req, res) => {
     }
 }
 
+//paginate list food
+const paginateFood = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+    const startIndex = (page - 1) * limit;
 
-export { addFood, listFood, removeFood, updateFood };
+    try {
+        // Sort by lastest time and paginate
+        const orders = await foodModel.find().limit(limit).skip(startIndex);
+        const totalFoods = await foodModel.countDocuments();
+        const totalPages = Math.ceil(totalFoods / limit);
+
+        res.json({
+            success: true,
+            data: orders,
+            page,
+            totalPages,
+            totalFoods
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error" });
+    }
+}
+
+
+export { addFood, listFood, removeFood, updateFood, paginateFood };
