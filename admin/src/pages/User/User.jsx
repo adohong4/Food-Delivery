@@ -10,22 +10,23 @@ const User = ({ url }) => {
     const [currentUser, setCurrentUser] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
     const [totalUser, setTotalUser] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
 
     // Hàm lấy danh sách
-    const fetchList = async () => {
-        const response = await axios.get(`${url}/api/user/getUser`);
+    const fetchList = async (page) => {
+        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=5`);
         if (response.data.success) {
             setList(response.data.data);
-            setTotalUser(response.data.total);
-            setTotalPages(response.data.total_pages);
+            setTotalUser(response.data.totalUsers);
+            setTotalPages(response.data.totalPages);
         } else {
             toast.error("Error");
         }
     };
 
     useEffect(() => {
-        fetchList();
-    }, []);
+        fetchList(currentPage);
+    }, [currentPage]);
 
     //function delete user
     const removeUser = async (userId) => {
@@ -84,7 +85,9 @@ const User = ({ url }) => {
         setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
     };
 
-    const handlePageClick = () => {
+    const handlePageClick = (event) => {
+        console.log("event lib: ", event)
+        setCurrentPage(+event.selected + 1);
 
     }
 

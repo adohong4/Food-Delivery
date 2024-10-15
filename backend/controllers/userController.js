@@ -209,8 +209,34 @@ const deleteUserById = async (req, res) => {
 }
 
 
+
+//paginate user
+const paginateUser = async (req, res) => {
+    const page = parseInt(req.query.page) || 1; //current page display
+    const limit = parseInt(req.query.limit) || 5; // amount users of page
+    const startIndex = (page - 1) * limit;
+
+    try {
+        const users = await userModel.find().limit(limit).skip(startIndex);
+        const totalUsers = await userModel.countDocuments();
+        const totalPages = Math.ceil(totalUsers / limit);
+
+        res.json({
+            success: true,
+            data: users,
+            page,
+            totalPages,
+            totalUsers
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error" });
+    }
+}
+
+
 export {
     loginUser, registerUser, listUser,
     getUserById, updateUserById, getUserByName,
-    deleteUserById
+    deleteUserById, paginateUser
 };
