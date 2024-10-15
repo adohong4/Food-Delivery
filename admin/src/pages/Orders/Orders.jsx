@@ -5,13 +5,21 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import axios from "axios";
 import { assets } from '../../assets/assets';
+import ReactPaginate from 'react-paginate';
+
 const Orders = ({ url }) => {
     const [orders, setOrders] = useState([]);
-    const fetchAllorders = async () => {
-        const response = await axios.get(url + "/api/order/list");
+    const [totalOrder, setTotalOrder] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const fetchAllorders = async (page = 1) => {
+        const response = await axios.get(`${url}/api/order/lists?page=${page}&limit=10`);
         if (response.data.success) {
             setOrders(response.data.data)
             console.log(response.data.data);
+            setTotalOrder(response.data.totalOrder)
+            setTotalPages(response.data.totalPages)
         }
         else {
             toast.error("Error")
@@ -27,8 +35,14 @@ const Orders = ({ url }) => {
         }
     }
     useEffect(() => {
-        fetchAllorders()
-    }, [])
+        fetchAllorders(currentPage)
+    }, [currentPage])
+
+    const handlePageClick = (event) => {
+        setCurrentPage(+event.selected + 1);
+
+    }
+
     return (
         <div className="order-name">
             <h3>Order Page</h3>
@@ -70,6 +84,23 @@ const Orders = ({ url }) => {
                     </div>
                 ))}
             </div>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+
+
+                pageClassName="page-item"
+                pageLinkClassName="page-link" previousClassName="page-item"
+                previousLinkClassName="page-link" nextClassName="page-item" nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination" activeClassName="active"
+            />
         </div>
     );
 }

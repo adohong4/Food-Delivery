@@ -13,8 +13,8 @@ const User = ({ url }) => {
     const [currentPage, setCurrentPage] = useState(1)
 
     // Hàm lấy danh sách
-    const fetchList = async (page) => {
-        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=5`);
+    const fetchList = async (page = 1) => {
+        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=20`);
         if (response.data.success) {
             setList(response.data.data);
             setTotalUser(response.data.totalUsers);
@@ -30,7 +30,7 @@ const User = ({ url }) => {
 
     //function delete user
     const removeUser = async (userId) => {
-        const response = await axios.post(`${url}/api/user/remove`, { id: userId });
+        const response = await axios.post(`${url}/api/user/deleteUser`, { id: userId });
         await fetchList();
         if (response.data.success) {
             toast.success(response.data.message);
