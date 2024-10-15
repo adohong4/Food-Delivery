@@ -119,6 +119,33 @@ const getUserById = async (req, res) => {
     }
 }
 
+//get user by name
+const getUserByName = async (req, res) => {
+    try {
+        const userName = req.params.name;
+        const users = await userModel.find({ name: { $regex: userName, $options: 'i' } })
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        const filteredUsers = users.map(user => ({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password
+        }));
+
+        res.json({ success: true, data: filteredUsers })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
 //update user by id
 const updateUserById = async (req, res) => {
     try {
@@ -136,7 +163,7 @@ const updateUserById = async (req, res) => {
             if (!emailPattern.test(req.body.email)) {
                 return res.status(400).json({ success: false, message: "Invalid email format" });
             }
-            // Kiểm tra xem email đã tồn tại hay chưa
+            // check email exist?
             const emailExists = await userModel.findOne({ email: req.body.email });
             if (emailExists && emailExists._id.toString() !== userId) {
                 return res.status(400).json({ success: false, message: "Email already in use" });
@@ -147,12 +174,12 @@ const updateUserById = async (req, res) => {
             if (req.body.password.length < 8) {
                 return res.status(400).json({ success: false, message: "Password must be at least 8 characters long" });
             }
-            // Hash mật khẩu mới nếu có
+            // Hash new password
             const salt = await bcrypt.genSalt(10);
             updates.password = await bcrypt.hash(req.body.password, salt);
         }
 
-        // Cập nhật người dùng
+        // update user
         const updatedUser = await userModel.findByIdAndUpdate(userId, updates, { new: true });
 
         res.json({ success: true, message: "User Updated", data: updatedUser });
@@ -163,4 +190,27 @@ const updateUserById = async (req, res) => {
 }
 
 
-export { loginUser, registerUser, listUser, getUserById, updateUserById };
+//delete User By Id
+const deleteUserById = async (req, res) => {
+    try {
+        const userId = req.body.id;
+        const user = await userModel.findByIdAndDelete(userId)
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({ success: true, message: "User Removed" })
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+
+export {
+    loginUser, registerUser, listUser,
+    getUserById, updateUserById, getUserByName,
+    deleteUserById
+};

@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './User.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 
 const User = ({ url }) => {
     const [list, setList] = useState([]);
     const [showPopup, setShowPopup] = useState(false); // State điều khiển popup
     const [currentUser, setCurrentUser] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
+    const [totalUser, setTotalUser] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
 
     // Hàm lấy danh sách
     const fetchList = async () => {
         const response = await axios.get(`${url}/api/user/getUser`);
         if (response.data.success) {
             setList(response.data.data);
+            setTotalUser(response.data.total);
+            setTotalPages(response.data.total_pages);
         } else {
             toast.error("Error");
         }
@@ -22,7 +27,7 @@ const User = ({ url }) => {
         fetchList();
     }, []);
 
-    // Hàm xóa món ăn
+    //function delete user
     const removeUser = async (userId) => {
         const response = await axios.post(`${url}/api/user/remove`, { id: userId });
         await fetchList();
@@ -32,6 +37,7 @@ const User = ({ url }) => {
             toast.error("Error");
         }
     };
+
 
     // Hàm mở popup và hiển thị dữ liệu món ăn cần chỉnh sửa
     const openUpdatePopup = (user) => {
@@ -78,6 +84,10 @@ const User = ({ url }) => {
         setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
     };
 
+    const handlePageClick = () => {
+
+    }
+
 
     return (
         <div className='list add flex-col'>
@@ -98,8 +108,25 @@ const User = ({ url }) => {
                         <button onClick={() => openUpdatePopup(item)} className="btn-update">Update</button>
                     </div>
                 ))}
-            </div>
 
+            </div>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+
+
+                pageClassName="page-item"
+                pageLinkClassName="page-link" previousClassName="page-item"
+                previousLinkClassName="page-link" nextClassName="page-item" nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination" activeClassName="active"
+            />
             {/* Popup Form */}
             {showPopup && (
                 <div className="popup">
