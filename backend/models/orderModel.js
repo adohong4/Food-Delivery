@@ -10,6 +10,8 @@ const orderSchema = new mongoose.Schema({
     payment: { type: Boolean, default: false }
 }, { timestamps: true })
 
+orderSchema.index({ createdAt: -1 }); // create index to optimal sorting
+
 const orderModel = mongoose.models.order || mongoose.model("orders", orderSchema)
 
 export default orderModel;
