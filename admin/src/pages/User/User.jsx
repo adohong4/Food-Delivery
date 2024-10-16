@@ -6,13 +6,14 @@ import ReactPaginate from 'react-paginate';
 
 const User = ({ url }) => {
     const [list, setList] = useState([]);
-    const [showPopup, setShowPopup] = useState(false); // State điều khiển popup
-    const [currentUser, setCurrentUser] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
-    const [totalUser, setTotalUser] = useState(0)
-    const [totalPages, setTotalPages] = useState(0)
-    const [currentPage, setCurrentPage] = useState(1)
+    const [showPopup, setShowPopup] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [totalUser, setTotalUser] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState(''); // State for search term
 
-    // Hàm lấy danh sách
+    // Function to fetch the user list
     const fetchList = async (page = 1) => {
         const response = await axios.get(`${url}/api/user/users?page=${page}&limit=20`);
         if (response.data.success) {
@@ -28,10 +29,28 @@ const User = ({ url }) => {
         fetchList(currentPage);
     }, [currentPage]);
 
-    //function delete user
+    // Function to search users
+    const handleSearch = async () => {
+        if (searchTerm.trim() === '') {
+            // If no search term, fetch the original user list
+            await fetchList(currentPage);
+            return;
+        }
+
+        const response = await axios.get(`${url}/api/user/users/search?term=${searchTerm}`);
+        if (response.data.success) {
+            setList(response.data.data);
+            setTotalUser(response.data.totalUsers);
+            setTotalPages(response.data.totalPages);
+        } else {
+            toast.error("Error");
+        }
+    };
+
+    // Function to delete user
     const removeUser = async (userId) => {
         const response = await axios.post(`${url}/api/user/deleteUser`, { id: userId });
-        await fetchList();
+        await fetchList(currentPage); // Fetch list again after deletion
         if (response.data.success) {
             toast.success(response.data.message);
         } else {
@@ -39,38 +58,34 @@ const User = ({ url }) => {
         }
     };
 
-
-    // Hàm mở popup và hiển thị dữ liệu món ăn cần chỉnh sửa
+    // Function to open update popup
     const openUpdatePopup = (user) => {
         setCurrentUser(user);
         setShowPopup(true);
     };
 
-    // Hàm đóng popup
+    // Function to close update popup
     const closePopup = () => {
         setShowPopup(false);
         setCurrentUser(null);
     };
 
-    // Hàm xử lý khi người dùng nhấn nút Update trong popup
+    // Function to handle update
     const handleUpdate = async () => {
         const formData = {
             name: currentUser.name,
             email: currentUser.email,
-            password: currentUser.password ? currentUser.password : undefined // Chỉ gửi mật khẩu nếu có
+            password: currentUser.password ? currentUser.password : undefined
         };
 
         try {
             const response = await axios.put(`${url}/api/user/updateUser/${currentUser._id}`, formData);
-
-            console.log(response.data); // Kiểm tra phản hồi từ API
-
             if (response.data.success) {
                 toast.success('Updated successfully');
-                await fetchList(); // Cập nhật lại danh sách
-                closePopup(); // Đóng popup sau khi thành công
+                await fetchList(); // Update the list after successful update
+                closePopup(); // Close the popup
             } else {
-                toast.error(response.data.message); // Hiển thị thông báo lỗi
+                toast.error(response.data.message);
             }
         } catch (error) {
             console.error(error);
@@ -78,41 +93,52 @@ const User = ({ url }) => {
         }
     };
 
-
-
-    // Hàm xử lý khi có thay đổi trên input
+    // Function to handle input changes
     const handleChange = (e) => {
         setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
     };
 
     const handlePageClick = (event) => {
-        console.log("event lib: ", event)
         setCurrentPage(+event.selected + 1);
-
     }
 
-
     return (
-        <div className='list add flex-col'>
-            <p>All User List</p>
-            <div className="list-table">
-                <div className="list-table-format title">
-                    <b>Name</b>
-                    <b>Email</b>
-                    <b>Password</b>
-                    <b>Status</b>
-                </div>
-                {list.map((item, index) => (
-                    <div key={index} className='list-table-format'>
-                        <p>{item.name}</p>
-                        <p>{item.email}</p>
-                        <p>{item.password}</p>
-                        <p onClick={() => removeUser(item._id)} className='cursor'>X</p>
-                        <button onClick={() => openUpdatePopup(item)} className="btn-update">Update</button>
-                    </div>
-                ))}
-
+        <div className='user-list-container'>
+            <p>User List</p>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search by name or email"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button onClick={handleSearch}>Search</button>
             </div>
+            <table className="user-list-table">
+                <thead>
+                    <tr className="table-header">
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {list.map((item, index) => (
+                        <tr key={index} className='table-row'>
+                            <td>{item.name}</td>
+                            <td>{item.email}</td>
+                            <td>{item.password}</td>
+                            <td onClick={() => removeUser(item._id)} className='cursor'>X</td>
+                            <td>
+                                <button onClick={() => openUpdatePopup(item)} className="btn-update">Update</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            
             <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"
@@ -121,15 +147,18 @@ const User = ({ url }) => {
                 pageCount={totalPages}
                 previousLabel="<"
                 renderOnZeroPageCount={null}
-
-
                 pageClassName="page-item"
-                pageLinkClassName="page-link" previousClassName="page-item"
-                previousLinkClassName="page-link" nextClassName="page-item" nextLinkClassName="page-link"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
                 breakClassName="page-item"
                 breakLinkClassName="page-link"
-                containerClassName="pagination" activeClassName="active"
+                containerClassName="pagination"
+                activeClassName="active"
             />
+            
             {/* Popup Form */}
             {showPopup && (
                 <div className="popup">

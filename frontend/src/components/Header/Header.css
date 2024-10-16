@@ -16,7 +16,7 @@
     align-items: start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 30%;
+    bottom: 20%;
     left: 10vw;
     animation: fadeIn 3s;
 }
@@ -70,13 +70,16 @@
 
 
 @media (max-width: 750px) {
+    .navbar-brand {
+        margin: 0 auto;
+    }
     .nav {
         height: 60vw; 
     }
 
     .nav-contents {
         max-width: 65%;
-        left: 5vw; 
+        /* left: 5vw;  */
     }
 
     .nav-contents h2 {

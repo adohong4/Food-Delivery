@@ -11,13 +11,14 @@ const Footer = () => {
                         {/* Footer Content Left */}
                         <div className="footer-content-left col-md-4">
                             <img src={assets.logo} alt="" className="mb-3" />
-                            <p className="text-muted">Mang đồ ăn - Đem hài lòng</p>
-                            <p className="text-muted">Hãy để chúng tôi là sự lựa chọn của quý vị</p>
+                            <p className="text-muted">Bringing food - Delivering satisfaction</p>
+                            <p className="text-muted">Let us be your choice.</p>
                             <div className="footer-social-icons d-flex">
-                                <img src={assets.facebook_icon} alt="" className="mr-3" />
-                                <img src={assets.twitter_icon} alt="" className="mr-3" />
-                                <img src={assets.linkedin_icon} alt="" />
+                                <img src={assets.facebook_icon} alt="Facebook" className="social-icon facebook-icon mr-3" />
+                                <img src={assets.twitter_icon} alt="Twitter" className="social-icon twitter-icon mr-3" />
+                                <img src={assets.linkedin_icon} alt="LinkedIn" className="social-icon linkedin-icon" />
                             </div>
+
                             
                         </div>
     

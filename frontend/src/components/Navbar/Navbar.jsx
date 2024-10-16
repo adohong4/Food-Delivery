@@ -62,10 +62,7 @@ const Navbar = ({ setShowLogin }) => {
                     </li>
                 </ul>
 
-                <div className="col-xl-3 navbar-right d-flex align-items-center">
-                    <div className="navbar-search-icon col-2 me-1">
-                        <img src={assets.search_icon} alt="Search" />
-                    </div>
+                <div className="col-xl-2 navbar-right align-items-center">
                     <div className="navbar-search-icon col-2 me-1">
                         <Link to="/cart">
                             <img src={assets.basket_icon} alt="Cart" />
@@ -80,7 +77,7 @@ const Navbar = ({ setShowLogin }) => {
                             Sign in
                         </button>
                     ) : (
-                        <div className="navbar-profile dropdown">
+                        <div className="navbar-profile col-2 dropdown">
                             <img
                                 src={assets.profile_icon}
                                 alt="Profile"

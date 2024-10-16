@@ -2,7 +2,7 @@
 .section-footer {
     width: 100%;
     background-color: #f3f3f3;
-    padding: 60px 0;
+    padding: 30px 0;
     color: #333;
     border-radius: 10px;
     margin-top: 10%;
@@ -25,6 +25,11 @@
 .footer-content-center {
     flex: 1;
     padding: 2%;
+}
+
+.footer-content-left .text-muted{
+    color: #e0e0e0!important;
+    font-weight: 500;
 }
 .list-unstyled{
     margin-top: 5%;
@@ -66,7 +71,7 @@
 .footer-copyright {
     text-align: center;
     font-size: 14px;
-    color: #fff;
+    color: #fff !important;
 }
 
 .section-footer {
@@ -93,10 +98,26 @@
     filter: brightness(0) invert(1); 
 }
 
-.footer-social-icons img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.footer-social-icons {
+    display: flex; /* Đảm bảo rằng các biểu tượng nằm trong cùng một hàng */
 }
+
+.social-icon {
+    transition: filter 0.3s ease; /* Thêm hiệu ứng chuyển tiếp cho hiệu ứng hover */
+}
+
+.facebook-icon:hover {
+    filter: brightness(0) saturate(100%) invert(36%) sepia(100%) saturate(150%) hue-rotate(205deg) brightness(95%) contrast(100%); /* Màu sắc riêng cho Facebook */
+}
+
+.twitter-icon:hover {
+    filter: brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(141%) hue-rotate(190deg) brightness(90%) contrast(98%); /* Màu sắc riêng cho Twitter */
+}
+
+.linkedin-icon:hover {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(100%) saturate(1731%) hue-rotate(203deg) brightness(103%) contrast(102%); /* Màu sắc riêng cho LinkedIn */
+}
+
 
 
 @media (max-width: 768px) {
@@ -105,13 +126,11 @@
         text-align: center;
     }
 
-    .footer-content-left,
-    .footer-content-right,
-    .footer-content-center {
-        margin-bottom: 30px;
-    }
 
     .map iframe {
         height: 200px;
     }
+    .footer-social-icons {
+        justify-content: center;
+    } 
 }
