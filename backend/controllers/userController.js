@@ -241,7 +241,7 @@ const deleteUserById = async (req, res) => {
 //paginate user
 const paginateUser = async (req, res) => {
     const page = parseInt(req.query.page) || 1; //current page display
-    const limit = parseInt(req.query.limit) || 5; // amount users of page
+    const limit = parseInt(req.query.limit) || 20; // amount users of page
     const startIndex = (page - 1) * limit;
 
     try {

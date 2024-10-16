@@ -15,7 +15,7 @@ const User = ({ url }) => {
 
     // Function to fetch the user list
     const fetchList = async (page = 1) => {
-        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=5`);
+        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=20`);
         if (response.data.success) {
             setList(response.data.data);
             setTotalUser(response.data.totalUsers);
