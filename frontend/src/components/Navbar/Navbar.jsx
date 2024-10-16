@@ -71,7 +71,7 @@ const Navbar = ({ setShowLogin }) => {
                     </div>
                     {!token ? (
                         <button className="btn btn-signin btn-primary" onClick={() => {
-                            console.log("Sign in clicked");
+                            // console.log("Sign in clicked");
                             setShowLogin(true);
                         }}>
                             Sign in

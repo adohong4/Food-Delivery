@@ -52,15 +52,15 @@ const Add = ({ url }) => {
                     <div className="form-group">
                         <p>Upload Image</p>
                         <label htmlFor="image" className="d-block">
-                            <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="Upload Preview" className="img-thumbnail" style={{cursor: 'pointer'}} /> 
+                            <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="Upload Preview" className="img-thumbnail" style={{ cursor: 'pointer' }} />
                         </label>
-                        <input 
-                            onChange={(e) => setImage(e.target.files[0])} 
-                            type="file" 
-                            id="image" 
-                            className="form-control-file" 
-                            style={{display: 'none'}} 
-                            required 
+                        <input
+                            onChange={(e) => setImage(e.target.files[0])}
+                            type="file"
+                            id="image"
+                            className="form-control-file"
+                            style={{ display: 'none' }}
+                            required
                         />
 
                     </div>
@@ -81,7 +81,7 @@ const Add = ({ url }) => {
                             <select onChange={onChangeHandler} value={data.category} name="category" className="form-control">
                                 <option value="Salad">Salad</option>
                                 <option value="Rolls">Rolls</option>
-                                <option value="Desserts">Desserts</option>
+                                <option value="Deserts">Deserts</option>
                                 <option value="Sandwich">Sandwich</option>
                                 <option value="Drink">Drink</option>
                                 <option value="Pure Veg">Pure Veg</option>
