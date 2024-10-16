@@ -1,0 +1,30 @@
+{
+    "projects": [
+        {
+            "name": "frontend",
+            "src": "frontend/",
+            "functions": "api"
+        },
+        {
+            "name": "admin",
+            "src": "admin/",
+            "functions": "api"
+        },
+        {
+            "name": "backend",
+            "src": "backend/",
+            "builds": [
+                {
+                    "src": "server.js",
+                    "use": "@vercel/node"
+                }
+            ],
+            "routes": [
+                {
+                    "src": "/(.*)",
+                    "dest": "/server.js"
+                }
+            ]
+        }
+    ]
+}
