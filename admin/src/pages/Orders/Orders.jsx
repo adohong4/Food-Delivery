@@ -47,9 +47,9 @@ const Orders = ({ url }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchAllOrders(currentPage);
-        }, 120000); // 2 phút = 120000 ms
+        }, 120000); // 2 minutes = 120000 ms
 
-        return () => clearInterval(interval); // Dọn dẹp interval khi component bị unmount
+        return () => clearInterval(interval); // reload when time runs out!
     },)
 
     const handlePageClick = (event) => {

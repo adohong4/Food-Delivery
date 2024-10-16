@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
     const url = "http://localhost:4001";
+    const url2 = "http://localhost:5174";
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
 
@@ -70,7 +71,7 @@ const StoreContextProvider = (props) => {
         addToCart,
         removeFromCart,
         getTotalCartAmount,
-        url,
+        url, url2,
         setToken,
         token
     }

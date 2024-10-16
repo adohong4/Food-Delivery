@@ -2,7 +2,7 @@ import express from "express"
 import {
     loginUser, registerUser, listUser,
     getUserById, getUserByName, updateUserById,
-    deleteUserById, paginateUser
+    deleteUserById, paginateUser, checkToken
 } from "../controllers/userController.js";
 
 const userRouter = express.Router();
@@ -23,5 +23,6 @@ userRouter.post("/deleteUser/", deleteUserById);
 
 userRouter.get("/users", paginateUser);
 
+userRouter.get("/checkToken", checkToken);
 
 export default userRouter;
