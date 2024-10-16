@@ -1,9 +1,14 @@
 /* Navbar Styles */
 .navbar {
-    background-color: #f8f9fa;
+    background-color: #B5B5B5;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed !important; 
+    top: 0; 
+    z-index: 999;
+    width: 100%;
 }
+
 
 .navbar-brand {
     text-align: center;
@@ -13,7 +18,9 @@
     height: auto;
 }
 
-/* Navbar Links */
+.navbar-collapse{
+    padding-right: 10px;
+}
 .navbar-nav {
     flex-grow: 1;
     justify-content: center;

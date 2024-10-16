@@ -10,7 +10,6 @@ const List = ({ url }) => {
     const [newImage, setNewImage] = useState(null); // State lưu hình ảnh mới
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Hàm lấy danh sách
     const fetchList = async () => {
         const response = await axios.get(`${url}/api/food/list`);
         if (response.data.success) {
@@ -88,7 +87,6 @@ const List = ({ url }) => {
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
-            // If no search term, fetch the original user list
             await fetchList();
             return;
         }
@@ -105,17 +103,24 @@ const List = ({ url }) => {
 
     return (
         <div className='list add flex-col'>
-            <p>All Foods List</p>
-            <div className="search-container">
-
-                <input
-                    type="text"
-                    placeholder="Search by Food name"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button onClick={handleSearch}>Search</button>
+            <div className='top-list-tiltle'>
+                <div className='col-lg-6 tittle-right'>
+                    <p>All Foods List</p>
+                </div>
+                <div className='col-lg-6 search-left'>
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search by Food name"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <button onClick={handleSearch}>Search</button>
+                    </div>
+                </div>
             </div>
+            
+            
 
             <div className="list-table">
                 <div className="list-table-format title">
