@@ -34,7 +34,8 @@ const Orders = ({ url }) => {
         });
 
         if (response.data.success) {
-            await fetchAllOrders();
+            await fetchAllOrders(currentPage);
+
         }
 
         console.log(`Order ${orderId}: ${selectedValue}`);

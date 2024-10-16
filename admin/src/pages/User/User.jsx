@@ -15,7 +15,7 @@ const User = ({ url }) => {
 
     // Function to fetch the user list
     const fetchList = async (page = 1) => {
-        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=20`);
+        const response = await axios.get(`${url}/api/user/users?page=${page}&limit=5`);
         if (response.data.success) {
             setList(response.data.data);
             setTotalUser(response.data.totalUsers);
@@ -83,7 +83,7 @@ const User = ({ url }) => {
             const response = await axios.put(`${url}/api/user/updateUser/${currentUser._id}`, formData);
             if (response.data.success) {
                 toast.success('Updated successfully');
-                await fetchList(); // Update the list after successful update
+                await fetchList(currentPage); // Update the list after successful update
                 closePopup(); // Close the popup
             } else {
                 toast.error(response.data.message);
