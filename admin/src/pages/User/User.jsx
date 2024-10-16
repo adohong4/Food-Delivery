@@ -37,7 +37,8 @@ const User = ({ url }) => {
             return;
         }
 
-        const response = await axios.get(`${url}/api/user/users/search?term=${searchTerm}`);
+        // const response = await axios.get(`${url}/api/user/getUserName/search?term=${searchTerm}`);
+        const response = await axios.get(`${url}/api/user/getUserName`, { params: { term: searchTerm } })
         if (response.data.success) {
             setList(response.data.data);
             setTotalUser(response.data.totalUsers);
@@ -120,7 +121,7 @@ const User = ({ url }) => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
-                        <th>Status</th>
+                        <th>Delete</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -138,7 +139,7 @@ const User = ({ url }) => {
                     ))}
                 </tbody>
             </table>
-            
+
             <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"
@@ -158,7 +159,7 @@ const User = ({ url }) => {
                 containerClassName="pagination"
                 activeClassName="active"
             />
-            
+
             {/* Popup Form */}
             {showPopup && (
                 <div className="popup">

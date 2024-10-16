@@ -17,7 +17,7 @@ userRouter.get("/getUser/:id", getUserById);
 
 userRouter.put("/updateUser/:id", updateUserById);
 
-userRouter.get("/getUserName/:name", getUserByName);
+userRouter.get("/getUserName", getUserByName);
 
 userRouter.post("/deleteUser/", deleteUserById);
 

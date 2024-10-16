@@ -63,9 +63,9 @@ const Orders = ({ url }) => {
             <h3>Order Page</h3>
             <div className="order-list">
                 {orders.map((order, index) => (
-                    <div key={index} className="order-item" onClick={() => openPopup(order)}>
+                    <div key={index} className="order-item" >
                         <img src={assets.parcel_icon} alt="" />
-                        <div>
+                        <div onClick={() => openPopup(order)}>
                             <p className="order-food-item">
                                 {order.items.map((item, idx) => (
                                     <span key={idx}>
@@ -123,46 +123,46 @@ const Orders = ({ url }) => {
                 activeClassName="active"
             />
 
-            {/* Popup cho thông tin đơn hàng */}
+            {/* Popup for Order information */}
             {isPopupOpen && (
-               <div className="popUp">
-               <div className="popup-order-content"> 
-                   <h2>Order Details</h2>
-                   {selectedOrder && (
-                       <div>
-                           <h4>Customer Information</h4>
-                           <p>Name: {selectedOrder.address.firstName} {selectedOrder.address.lastName}</p>
-                           <p>Phone: {selectedOrder.address.phone}</p>
-                           <p>Address: {selectedOrder.address.street}, {selectedOrder.address.state}, {selectedOrder.address.country}, {selectedOrder.address.zipcode}</p>
-                           
-                           {/* Hiển thị trạng thái với màu sắc */}
-                           <h4>Status</h4>
-                           <p style={{
-                               color: selectedOrder.status === "Wait for confirmation" ? "#2c3e50" :
-                                      selectedOrder.status === "Food processing" ? "#d35400" :
-                                      selectedOrder.status === "Out for delivery" ? "#f39c12" :
-                                      selectedOrder.status === "Delivered" ? "#27ae60" :
-                                      "#ecf0f1"
-                           }}>
-                               {selectedOrder.status}
-                           </p>
-           
-                           <h4>Order Items</h4>
-                            <ul>
-                                {selectedOrder.items.map((item, index) => (
-                                    <li key={index}>
-                                        {item.name} x {item.quantity} {/* Đảm bảo dùng 'quantity' đúng chính tả */}
-                                    </li>
-                                ))}
-                            </ul>
-                           <h4>Total Amount</h4>
-                           <p>${selectedOrder.amount}</p>
-                           <button onClick={closePopup}>Close</button>
-                       </div>
-                   )}
-               </div>
-           </div>
-           
+                <div className="popUp">
+                    <div className="popup-order-content">
+                        <h2>Order Details</h2>
+                        {selectedOrder && (
+                            <div>
+                                <h4>Customer Information</h4>
+                                <p>Name: {selectedOrder.address.firstName} {selectedOrder.address.lastName}</p>
+                                <p>Phone: {selectedOrder.address.phone}</p>
+                                <p>Address: {selectedOrder.address.street}, {selectedOrder.address.state}, {selectedOrder.address.country}, {selectedOrder.address.zipcode}</p>
+
+                                {/* Hiển thị trạng thái với màu sắc */}
+                                <h4>Status</h4>
+                                <p style={{
+                                    color: selectedOrder.status === "Wait for confirmation" ? "#2c3e50" :
+                                        selectedOrder.status === "Food processing" ? "#d35400" :
+                                            selectedOrder.status === "Out for delivery" ? "#f39c12" :
+                                                selectedOrder.status === "Delivered" ? "#27ae60" :
+                                                    "#ecf0f1"
+                                }}>
+                                    {selectedOrder.status}
+                                </p>
+
+                                <h4>Order Items</h4>
+                                <ul>
+                                    {selectedOrder.items.map((item, index) => (
+                                        <li key={index}>
+                                            {item.name} x {item.quantity} {/* Đảm bảo dùng 'quantity' đúng chính tả */}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h4>Total Amount</h4>
+                                <p>${selectedOrder.amount}</p>
+                                <button onClick={closePopup}>Close</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
             )}
         </div>
     );

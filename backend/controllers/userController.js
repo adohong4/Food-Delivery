@@ -122,7 +122,7 @@ const getUserById = async (req, res) => {
 //get user by name
 const getUserByName = async (req, res) => {
     try {
-        const userName = req.params.name;
+        const userName = req.query.term || '';
         const users = await userModel.find({ name: { $regex: userName, $options: 'i' } })
 
         if (users.length === 0) {
