@@ -109,7 +109,7 @@ const User = ({ url }) => {
             <div className="search-container">
                 <input
                     type="text"
-                    placeholder="Search by name or email"
+                    placeholder="Search by name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
