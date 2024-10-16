@@ -44,6 +44,14 @@ const Orders = ({ url }) => {
         fetchAllOrders(currentPage);
     }, [currentPage]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchAllOrders(currentPage);
+        }, 120000); // 2 phút = 120000 ms
+
+        return () => clearInterval(interval); // Dọn dẹp interval khi component bị unmount
+    },)
+
     const handlePageClick = (event) => {
         setCurrentPage(+event.selected + 1);
     };
