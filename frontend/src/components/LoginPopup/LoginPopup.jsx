@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const LoginPopup = ({ setShowLogin }) => {
 
-    const { url, setToken } = useContext(StoreContext)
+    const { url2, url, setToken } = useContext(StoreContext)
 
     const [currState, setCurrState] = useState('Login');
 
@@ -26,15 +26,16 @@ const LoginPopup = ({ setShowLogin }) => {
         event.preventDefault()
         let newUrl = url;
 
-        // if (data.email === "admin@gmail.com" && data.password === "12345678") {
-        //     let newUrl = "http://localhost:5174/";
-        // } else {
-        if (currState === 'Login') {
-            newUrl += "/api/user/login"
+        if (data.email === "admin@gmail.com" && data.password === "12345678") {
+            window.location.href = url2; // move to URL admin
+            return;
         } else {
-            newUrl += "/api/user/register"
+            if (currState === 'Login') {
+                newUrl += "/api/user/login"
+            } else {
+                newUrl += "/api/user/register"
+            }
         }
-        // }
 
 
         const response = await axios.post(newUrl, data);
