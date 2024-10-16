@@ -27,7 +27,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/frontend/build/$1" //display when access into root
+            "dest": "/frontend/build/$1"
         }
     ]
 }
