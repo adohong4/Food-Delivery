@@ -17,7 +17,7 @@ export const Sidebar = () => {
                         <p>List item</p>
                     </NavLink>
                     <NavLink to='/user' className="sidebar-option">
-                        <i className="bi bi-box"></i>
+                        <i class="bi bi-file-person"></i>
                         <p>User</p>
                     </NavLink>
                     <NavLink to='/orders' className="sidebar-option">

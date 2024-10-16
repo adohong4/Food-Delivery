@@ -11,11 +11,11 @@
 
 .food-display-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Thiết lập 4 cột */
+    grid-template-columns: repeat(4, 1fr);
     margin-top: 30px;
     gap: 30px; 
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .food-item {
@@ -30,16 +30,49 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 1200px) {
+    .food-display-list {
+        grid-template-columns: repeat(3, 1fr); 
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+@media (max-width: 992px) {
+    .food-display-list {
+        grid-template-columns: repeat(1, 1fr); 
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .food-item {
+        width: 50%;
+        height: auto;
+        padding: 5%; 
+    }
+}
 
-/* Responsive Styles */
 @media (max-width: 768px) {
     .food-display-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 cột cho màn hình nhỏ hơn */
+        grid-template-columns: repeat(1, 1fr); 
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .food-item {
+        width: 50%;
+        height: auto;
+        padding: 5%; 
     }
 }
 
 @media (max-width: 480px) {
     .food-display-list {
-        grid-template-columns: 1fr; /* 1 cột cho màn hình rất nhỏ */
+        display: grid; 
+        padding-left: 5%;
+        padding-right: 5%;
+        grid-template-columns: repeat(1, 1fr); 
+    }
+    .food-item {
+        width: 50%;
+        height: auto;
+        padding: 5%; 
     }
 }

@@ -8,6 +8,7 @@ const List = ({ url }) => {
     const [showPopup, setShowPopup] = useState(false); // State điều khiển popup
     const [currentFood, setCurrentFood] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
     const [newImage, setNewImage] = useState(null); // State lưu hình ảnh mới
+    const [searchTerm, setSearchTerm] = useState('');
 
     // Hàm lấy danh sách
     const fetchList = async () => {
@@ -85,9 +86,37 @@ const List = ({ url }) => {
     };
 
 
+    const handleSearch = async () => {
+        if (searchTerm.trim() === '') {
+            // If no search term, fetch the original user list
+            await fetchList();
+            return;
+        }
+
+        // const response = await axios.get(`${url}/api/user/getUserName/search?term=${searchTerm}`);
+        const response = await axios.get(`${url}/api/food/searchFood`, { params: { term: searchTerm } })
+        if (response.data.success) {
+            setList(response.data.data);
+        } else {
+            toast.error("Error");
+        }
+    };
+
+
     return (
         <div className='list add flex-col'>
             <p>All Foods List</p>
+            <div className="search-container">
+
+                <input
+                    type="text"
+                    placeholder="Search by Food name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button onClick={handleSearch}>Search</button>
+            </div>
+
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Image</b>

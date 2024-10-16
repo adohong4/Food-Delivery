@@ -114,5 +114,34 @@ const paginateFood = async (req, res) => {
     }
 }
 
+//search food by name
+const searchFoodByName = async (req, res) => {
+    try {
+        const foodName = req.query.term || '';
+        const foods = await foodModel.find({ name: { $regex: foodName, $options: 'i' } })
 
-export { addFood, listFood, removeFood, updateFood, paginateFood };
+        if (foods.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Food not found"
+            })
+        }
+
+        // const filteredFoods = foods.map(food => ({
+        //     _id: food._id,
+
+        //     name: food.name,
+        //     description: food.description,
+        //     price: food.price,
+        //     category: food.category
+        // }));
+
+        res.json({ success: true, data: foods })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error" });
+    }
+}
+
+
+export { addFood, listFood, removeFood, updateFood, paginateFood, searchFoodByName };

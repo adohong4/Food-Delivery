@@ -19,22 +19,21 @@
 .list-table-format .cursor {
     cursor: pointer;
 }
-.cursor{
-    background-color: #EDEDED;
+
+.cursor {
     width: 10%;
     margin: 0 auto;
 }
-.cursor:hover{
-    background-color: #DDDDDD;
-}
-.btn-update{
-    background-color: #F25C05 ;
+
+.btn-update {
+    background-color: #F25C05;
     border: none;
     color: #fff;
     border-radius: 10px;
 }
-.btn-update:hover{
-    background-color: #F28705 ;
+
+.btn-update:hover {
+    background-color: #F28705;
 }
 
 
@@ -42,39 +41,40 @@
     z-index: 1001;
 }
 
-/* Che phủ toàn bộ màn hình */
+
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Nền mờ tối hơn */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
-.popup .popup-content label{
+
+.popup .popup-content label {
     color: #e74c3c;
 }
 
-/* Container nội dung popup */
+
 .popup-content {
     background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
     padding: 30px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     width: 500px;
     max-width: 90%;
-    max-height: 80vh; /* Giới hạn chiều cao của popup */
-    overflow-y: auto; /* Thêm khả năng cuộn dọc */
+    max-height: 80vh;
+    overflow-y: auto;
     box-sizing: border-box;
     position: relative;
     font-family: 'Roboto', sans-serif;
     color: #333;
 }
 
-/* Tiêu đề popup */
+
 .popup-content h3 {
     margin-top: 0;
     font-size: 24px;
@@ -83,7 +83,7 @@
     margin-bottom: 20px;
 }
 
-/* Styling cho label */
+
 .popup-content label {
     display: block;
     margin: 15px 0 5px;
@@ -92,7 +92,7 @@
     color: #34495e;
 }
 
-/* Styling cho input và textarea */
+
 .popup-content input[type="text"],
 .popup-content textarea,
 .popup-content input[type="file"] {
@@ -114,7 +114,7 @@
     box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
 }
 
-/* Styling cho nút */
+
 .popup-content button {
     padding: 12px 25px;
     border: none;
@@ -139,7 +139,7 @@
     background-color: #c0392b;
 }
 
-/* Styling cho hình ảnh */
+
 .popup-content img {
     display: block;
     margin: 0 auto 20px;
@@ -148,12 +148,13 @@
     max-width: 100%;
 }
 
-/* Hiệu ứng cho popup xuất hiện */
+
 @keyframes popupFadeIn {
     from {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -164,12 +165,20 @@
     animation: popupFadeIn 0.5s ease-out;
 }
 
-/* Media queries cho thiết bị nhỏ */
+.search-input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    width: 50%;
+    max-width: 400px;
+}
+
 @media (max-width: 480px) {
     .popup-content {
         width: 90%;
         padding: 20px;
-        max-height: 85vh; /* Điều chỉnh chiều cao popup cho thiết bị nhỏ */
+        max-height: 85vh;
     }
 
     .popup-content h3 {
@@ -187,4 +196,3 @@
         display: none;
     }
 }
-

@@ -11,7 +11,7 @@
 .order-name h3 {
     text-align: center;
     color: #f24405; 
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
     text-transform: uppercase;
 }
 
@@ -67,6 +67,127 @@
     font-size: 0.9rem;
     color: #777;
 }
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; 
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-item > div {
+    width: 20%; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+
+.order-item img {
+    width: 50px; 
+    height: auto; 
+}
+.popUp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    animation: fadeIn 0.3s; 
+}
+
+.popup-order-content {
+    background: #fff; 
+    padding: 30px; 
+    border-radius: 12px; 
+    max-width: 500px;
+    width: 90%; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+    text-align: left; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+.popup-order-content h2 {
+    margin-top: 0; 
+    color: #2c3e50; 
+    font-size: 26px; 
+    border-bottom: 2px solid #27ae60; 
+    padding-bottom: 10px; 
+}
+
+.popup-order-content h4 {
+    margin: 15px 0 5px; 
+    color: #34495e; 
+    font-size: 20px;
+}
+
+.popup-order-content p,
+.popup-order-content li {
+    margin: 8px 0; 
+    color: #555; 
+    font-family: 'Arial', sans-serif; 
+}
+
+.popup-order-content .item-status {
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    color: white; 
+    font-weight: bold; 
+}
+
+.popup-order-content button {
+    background-color: #27ae60; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    padding: 12px 20px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; 
+    margin-top: 20px; 
+    font-size: 16px; 
+}
+
+.popup-order-content button:hover {
+    background-color: #219150;
+    transform: scale(1.05); 
+}
+
+.popup-order-content ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.popup-order-content li {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: #f9f9f9; 
+    margin: 10px 0; 
+    padding: 10px 15px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.popup-order-content li:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+/* Hiệu ứng hiện cho popup */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 
 .order-item p:last-of-type {
@@ -80,7 +201,9 @@ select {
     margin-top: 10px; 
     cursor: pointer;
 }
-
+.oder-item select option{
+    color: #fff !important;
+}
 /* Responsive */
 @media (max-width: 768px) {
     .order-item {
