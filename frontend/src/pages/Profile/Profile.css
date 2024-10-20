@@ -1,0 +1,111 @@
+.add {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 2%;
+    color: #6d6d6d;
+    font-size: 1.25rem; /* Thay thế 'x-large' bằng giá trị cụ thể */
+}
+
+.add .flex-col p {
+    color: #F25C05 !important;
+}
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.d-block img {
+    width: 25%;
+    transition: transform 0.3s ease;
+}
+
+.d-block img:hover {
+    transform: translateY(-10px);
+}
+
+.add-product-name,
+.add-product-description {
+    width: max(40%, 280px);
+}
+
+.add-product-name input,
+.add-product-description textarea {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.8rem; 
+    border: 1px solid #ced4da; 
+}
+
+.add-product-name input:focus,
+.add-product-description textarea:focus {
+    outline: none;
+    border-color: #F25C05; 
+}
+
+.add-category-price {
+    display: flex;
+    gap: 30px;
+}
+
+.add-category-price select,
+.add-category-price input {
+    max-width: 120px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #495057;
+}
+
+body, input, select, textarea {
+    font-family: 'Arial', sans-serif; 
+    font-size: 16px; 
+}
+
+.add-btn {
+    border: none;
+    padding: 20px 20px;
+    background-color: #F25C05;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+    width: 50%;
+}
+
+.add-btn:hover {
+    background-color: #F28705;
+}
+.img-thumbnail {
+    padding: .25rem;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.form-group p{
+    color: #F28705;
+}
+
+/* Custom responsive adjustments */
+@media (max-width: 768px) {
+    .form-row .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .add-btn {
+        width: 100%; /* Nút bấm chiếm hết chiều ngang trên màn hình nhỏ */
+        margin-top: 10px;
+    }
+    .add-btn {
+        padding: 10px 10px;
+        background-color: #F25C05;
+        font-size: 1rem;
+    }
+}

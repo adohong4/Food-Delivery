@@ -90,6 +90,10 @@ const Navbar = ({ setShowLogin }) => {
                                     <img src={assets.bag_icon} alt="" /><p>Orders</p>
                                 </li>
                                 <hr className="dropdown-divider" />
+                                <li onClick={() => navigate('/profile')} className="dropdown-item">
+                                    <img src={assets.bag_icon} alt="" /><p>Profile</p>
+                                </li>
+                                <hr className="dropdown-divider" />
                                 <li onClick={logout} className="dropdown-item">
                                     <img src={assets.logout_icon} alt="" /><p>Logout</p>
                                 </li>
