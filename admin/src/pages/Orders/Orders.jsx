@@ -48,7 +48,7 @@ const Orders = ({ url }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchAllOrders(currentPage);
-        }, 120000); // 2 minutes = 120000 ms
+        }, 60000); // 1 minutes = 60000 ms
 
         return () => clearInterval(interval); // reload when time runs out!
     },)
