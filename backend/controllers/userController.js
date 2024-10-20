@@ -104,6 +104,58 @@ const registerUser = async (req, res) => {
     }
 }
 
+//add Address User
+const addUserAddress = async (req, res) => {
+    const { userId, firstName, lastName, street, city, state, zipcode, country, phone } = req.body;
+
+    try {
+        // Tạo địa chỉ mới
+        const newAddress = {
+            firstname: firstName,
+            lastname: lastName,
+            street,
+            city,
+            state,
+            zipcode,
+            country,
+            phone
+        };
+
+        // Tìm và cập nhật user với địa chỉ mới
+        const user = await userModel.findByIdAndUpdate(
+            userId,
+            { $push: { addresses: newAddress } },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({ success: true, message: "Address added successfully", addresses: user.addresses });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+//get all list user address by id
+const getAllUserAddresses = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.body.userId);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({ success: true, addresses: user.addresses });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+
 //get all list user
 const listUser = async (req, res) => {
     try {
@@ -266,5 +318,5 @@ const paginateUser = async (req, res) => {
 export {
     loginUser, registerUser, listUser,
     getUserById, updateUserById, getUserByName,
-    deleteUserById, paginateUser, checkToken
+    deleteUserById, paginateUser, checkToken, addUserAddress, getAllUserAddresses
 };

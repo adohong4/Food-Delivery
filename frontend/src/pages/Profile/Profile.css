@@ -3,7 +3,8 @@
     margin-left: max(5vw, 25px);
     margin-top: 2%;
     color: #6d6d6d;
-    font-size: 1.25rem; /* Thay thế 'x-large' bằng giá trị cụ thể */
+    font-size: 1.25rem;
+    /* Thay thế 'x-large' bằng giá trị cụ thể */
 }
 
 .add .flex-col p {
@@ -34,14 +35,14 @@
 .add-product-description textarea {
     padding: 10px;
     border-radius: 10px;
-    font-size: 0.8rem; 
-    border: 1px solid #ced4da; 
+    font-size: 0.8rem;
+    border: 1px solid #ced4da;
 }
 
 .add-product-name input:focus,
 .add-product-description textarea:focus {
     outline: none;
-    border-color: #F25C05; 
+    border-color: #F25C05;
 }
 
 .add-category-price {
@@ -60,9 +61,12 @@
     color: #495057;
 }
 
-body, input, select, textarea {
-    font-family: 'Arial', sans-serif; 
-    font-size: 16px; 
+body,
+input,
+select,
+textarea {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
 }
 
 .add-btn {
@@ -80,6 +84,7 @@ body, input, select, textarea {
 .add-btn:hover {
     background-color: #F28705;
 }
+
 .img-thumbnail {
     padding: .25rem;
     border: 1px solid #dee2e6;
@@ -88,8 +93,48 @@ body, input, select, textarea {
     height: auto;
 }
 
-.form-group p{
+.form-group p {
     color: #F28705;
+}
+
+
+.my-address {
+    padding: 5%;
+}
+
+.my-address .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.my-address-addresses {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    align-items: center;
+    gap: 30px;
+    font-size: 14px;
+    padding: 10px 30px;
+    color: #454545;
+    border: 1px solid tomato;
+}
+
+.my-address-addresses img {
+    width: 50px;
+}
+
+.my-address-addresses p span {
+    font-weight: 500;
+}
+
+.my-address-addresses button {
+    border: none;
+    padding: 12px 0px;
+    border-radius: 4px;
+    background-color: #ffe1e1;
+    cursor: pointer;
+    color: #454545;
 }
 
 /* Custom responsive adjustments */
@@ -100,9 +145,11 @@ body, input, select, textarea {
     }
 
     .add-btn {
-        width: 100%; /* Nút bấm chiếm hết chiều ngang trên màn hình nhỏ */
+        width: 100%;
+        /* Nút bấm chiếm hết chiều ngang trên màn hình nhỏ */
         margin-top: 10px;
     }
+
     .add-btn {
         padding: 10px 10px;
         background-color: #F25C05;

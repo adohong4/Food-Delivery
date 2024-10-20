@@ -26,8 +26,11 @@ const AddressPopup = ({ setShowAddress }) => {
 
     const onAddress = async (event) => {
         event.preventDefault();
-        let newUrl = `${url}/api/address`; // Giả sử endpoint của bạn là /api/address
-        const response = await axios.post(newUrl, data);
+        const token = localStorage.getItem("token");
+        let newUrl = `${url}/api/user/addUserAddress`; // Giả sử endpoint của bạn là /api/address
+        const response = await axios.post(newUrl, data, {
+            headers: { token }
+        });
         if (response.data.success) {
             toast.success('Address added successfully!');
             setShowAddress(false);
@@ -48,7 +51,6 @@ const AddressPopup = ({ setShowAddress }) => {
                         <input required name="firstName" type="text" placeholder='First name' onChange={onChangeHandler} />
                         <input required name="lastName" type="text" placeholder='Last name' onChange={onChangeHandler} />
                     </div>
-                    <input required name="email" type="email" placeholder='Email address' onChange={onChangeHandler} />
                     <input required name="street" type="text" placeholder='Street' onChange={onChangeHandler} />
                     <div className="multi-fields">
                         <input required name="city" type="text" placeholder='City' onChange={onChangeHandler} />

@@ -9,19 +9,32 @@ import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'
 const Profile = () => {
     const { url, token } = useContext(StoreContext)
     const [data, setData] = useState([]);
+    const [addresses, setAddresses] = useState([]);
     const [image, setImage] = useState(false);
     const [showAddressPopup, setShowAddressPopup] = useState(false)
 
     const fetchAddresses = async () => {
-        const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } })
-        setData(response.data.data)
-        console.log(response.data.data)
-    }
+        try {
+            const response = await axios.get(`${url}/api/user/getAllUserAddresses`, {
+                headers: { token }
+            });
+            if (response.data.success) {
+                setAddresses(response.data.addresses);
+                console.log(response.data.addresses);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("There was an error fetching the addresses!", error);
+            toast.error("Failed to fetch addresses.");
+        }
+    };
+
     useEffect(() => {
         if (token) {
-            fetchAddresses()
+            fetchAddresses();
         }
-    }, [token])
+    }, [token]);
 
 
     return (
@@ -74,22 +87,18 @@ const Profile = () => {
                     ADD ADDRESS
                 </button>
                 <div className="container">
-                    {data.map((profile, index) => {
+                    {addresses.map((address, index) => {
                         return (
-                            <div key={index} className="my-address-address">
+                            <div key={index} className="my-address-addresses">
                                 <img src={assets.parcel_icon} alt="" />
-                                <p>{profile.items.map((item, index) => {
-                                    if (index === profile.items.length - 1) {
-                                        return item.name + " x " + item.quantity
-                                    }
-                                    else {
-                                        return item.name + " x " + item.quantity + ", "
-                                    }
-                                })}</p>
-                                <p>${profile.amount}.00</p>
-                                <p>Items: {profile.items.length}</p>
-                                <p><span>&#x25cf;</span><b> {profile.status}</b></p>
-                                <button onClick={fetchAddresses} >Track Order</button>
+                                <p><span>{address.firstname} {address.lastname}</span></p>
+                                <p>{address.street}</p>
+                                <p>{address.city}</p>
+                                <p>{address.state}</p>
+                                <p>{address.zipcode}</p>
+                                <p>{address.country}</p>
+                                <p>{address.phone}</p>
+                                <button onClick={fetchAddresses} >Edit</button>
                             </div>
                         )
                     })}
