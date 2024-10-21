@@ -15,7 +15,7 @@ const Orders = ({ url }) => {
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     const fetchAllOrders = async (page = 1) => {
-        const response = await axios.get(`${url}/api/order/lists?page=${page}&limit=10`);
+        const response = await axios.get(`${url}/api/table/orders?page=${page}&limit=10`);
         if (response.data.success) {
             setOrders(response.data.data);
             setTotalOrder(response.data.totalOrders);

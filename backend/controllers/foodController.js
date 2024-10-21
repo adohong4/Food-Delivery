@@ -89,31 +89,6 @@ const updateFood = async (req, res) => {
     }
 }
 
-//paginate list food
-const paginateFood = async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 12;
-    const startIndex = (page - 1) * limit;
-
-    try {
-        // Sort by lastest time and paginate
-        const orders = await foodModel.find().limit(limit).skip(startIndex);
-        const totalFoods = await foodModel.countDocuments();
-        const totalPages = Math.ceil(totalFoods / limit);
-
-        res.json({
-            success: true,
-            data: orders,
-            page,
-            totalPages,
-            totalFoods
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ success: false, message: "Error" });
-    }
-}
-
 //search food by name
 const searchFoodByName = async (req, res) => {
     try {
@@ -126,16 +101,6 @@ const searchFoodByName = async (req, res) => {
                 message: "Food not found"
             })
         }
-
-        // const filteredFoods = foods.map(food => ({
-        //     _id: food._id,
-
-        //     name: food.name,
-        //     description: food.description,
-        //     price: food.price,
-        //     category: food.category
-        // }));
-
         res.json({ success: true, data: foods })
     } catch (error) {
         console.log(error);
@@ -144,4 +109,4 @@ const searchFoodByName = async (req, res) => {
 }
 
 
-export { addFood, listFood, removeFood, updateFood, paginateFood, searchFoodByName };
+export { addFood, listFood, removeFood, updateFood, searchFoodByName };

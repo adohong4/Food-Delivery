@@ -1,11 +1,11 @@
 import express from 'express';
 import { getPaymentsByDay, getPaymentsByWeek, getPaymentsByMonth, getPaymentsByYear } from '../controllers/chartPaymentController.js'
 
-const chartRouter = express.Router();
+const chartPaymentRouter = express.Router();
 
-chartRouter.get("/dayPayment", getPaymentsByDay)
-chartRouter.get("/weekPayment", getPaymentsByWeek)
-chartRouter.get("/monthPayment", getPaymentsByMonth)
-chartRouter.get("/yearPayment", getPaymentsByYear)
+chartPaymentRouter.get("/dayPayment", getPaymentsByDay)
+chartPaymentRouter.get("/weekPayment", getPaymentsByWeek)
+chartPaymentRouter.get("/monthPayment", getPaymentsByMonth)
+chartPaymentRouter.get("/yearPayment", getPaymentsByYear)
 
-export default chartRouter;
+export default chartPaymentRouter;

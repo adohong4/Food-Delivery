@@ -91,31 +91,6 @@ const listOrders = async (req, res) => {
     }
 }
 
-//paginate list order
-const paginateOrder = async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const startIndex = (page - 1) * limit;
-
-    try {
-        // Sort by lastest time and paginate
-        const orders = await orderModel.find().sort({ createdAt: -1 }).limit(limit).skip(startIndex);
-        const totalOrders = await orderModel.countDocuments();
-        const totalPages = Math.ceil(totalOrders / limit);
-
-        res.json({
-            success: true,
-            data: orders,
-            page,
-            totalPages,
-            totalOrders
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ success: false, message: "Error" });
-    }
-}
-
 //api for updating order status
 const updateStatus = async (req, res) => {
     try {
@@ -127,4 +102,4 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrder, verifyOrder, userOrder, listOrders, updateStatus, paginateOrder };
+export { placeOrder, verifyOrder, userOrder, listOrders, updateStatus };
