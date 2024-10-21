@@ -4,25 +4,16 @@ import { assets } from '../../../assets/assets';
 import { StoreContext } from '../../../context/StoreContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactStars from "react-rating-stars-component";
 
-const CommentPopup = ({ setShowAddress }) => {
+const CommentPopup = ({ setShowComment }) => {
     const { url, setToken } = useContext(StoreContext);
     const [data, setData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        street: '',
-        city: '',
-        state: '',
-        zipcode: '',
-        country: '',
-        phone: ''
-    });
 
-    const onChangeHandler = (event) => {
-        const { name, value } = event.target;
-        setData(prevData => ({ ...prevData, [name]: value }));
-    };
+    });
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
+
 
     const onAddress = async (event) => {
         event.preventDefault();
@@ -44,26 +35,27 @@ const CommentPopup = ({ setShowAddress }) => {
             <form onSubmit={onAddress} className="address-popup-container">
                 <div className="place-order-left">
                     <div className="address-popup-title">
-                        <p className="title">Delivery Information</p>
-                        <img onClick={() => setShowAddress(false)} src={assets.cross_icon} alt="" />
+                        <p className="title">Order Review</p>
+                        <img onClick={() => setShowComment(false)} src={assets.cross_icon} alt="" />
                     </div>
-                    <div className="multi-fields">
-                        <input required name="firstName" type="text" placeholder='First name' onChange={onChangeHandler} />
-                        <input required name="lastName" type="text" placeholder='Last name' onChange={onChangeHandler} />
+                    <p><span>Đánh giá của bạn</span></p>
+                    <div className="rating">
+                        <ReactStars
+                            name="rate1"
+                            starCount={5}
+                            value={rating}
+                            onStarClick={(nextValue) => setRating(nextValue)}
+                        />
                     </div>
-                    <input required name="street" type="text" placeholder='Street' onChange={onChangeHandler} />
-                    <div className="multi-fields">
-                        <input required name="city" type="text" placeholder='City' onChange={onChangeHandler} />
-                        <input required name="state" type="text" placeholder='State' onChange={onChangeHandler} />
-                    </div>
-                    <div className="multi-fields">
-                        <input required name="zipcode" type="text" placeholder='Zip code' onChange={onChangeHandler} />
-                        <input required name="country" type="text" placeholder='Country' onChange={onChangeHandler} />
-                    </div>
-                    <input required name="phone" type="text" placeholder='Phone' onChange={onChangeHandler} />
+                    <p>Nhận xét của bạn</p>
+                    <textarea
+                        placeholder="Enter your comment here"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    />
                 </div>
                 <button type="submit" className="btn">
-                    ADD ADDRESS
+                    Accept
                 </button>
             </form>
         </div>

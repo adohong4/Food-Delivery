@@ -7,15 +7,19 @@
     border: 1px solid #cacaca;
     font-size: 13px;
 }
-.top-list-tiltle{
+
+.top-list-tiltle {
     display: flex;
 }
-.top-list-tiltle .tittle-right{
+
+.top-list-tiltle .tittle-right {
     margin-top: 1%;
 }
-.top-list-tiltle .search-container input{
+
+.top-list-tiltle .search-container input {
     width: 100%;
 }
+
 .list-table-format.title {
     background-color: #f9f9f9;
 }
