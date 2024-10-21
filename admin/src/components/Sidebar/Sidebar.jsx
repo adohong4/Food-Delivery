@@ -8,6 +8,10 @@ export const Sidebar = () => {
         <div className="section-sidebar">
             <div className="sidebar">
                 <div className="sidebar-options">
+                    <NavLink to='/dashboard' className="sidebar-option">
+                        <i className="bi bi-plus-circle"></i>
+                        <p>Dash Board</p>
+                    </NavLink>
                     <NavLink to='/add' className="sidebar-option">
                         <i className="bi bi-plus-circle"></i>
                         <p>Add item</p>
@@ -17,7 +21,7 @@ export const Sidebar = () => {
                         <p>List item</p>
                     </NavLink>
                     <NavLink to='/user' className="sidebar-option">
-                        <i class="bi bi-file-person"></i>
+                        <i className="bi bi-file-person"></i>
                         <p>User</p>
                     </NavLink>
                     <NavLink to='/orders' className="sidebar-option">

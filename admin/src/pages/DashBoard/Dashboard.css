@@ -1,0 +1,8 @@
+.Dashboard {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 2%;
+    color: #6d6d6d;
+    font-size: 1.25rem;
+    /* Thay thế 'x-large' bằng giá trị cụ thể */
+}

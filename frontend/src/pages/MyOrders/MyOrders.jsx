@@ -3,10 +3,14 @@ import './MyOrders.css'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
+import CommentPopup from '../../components/Popup/CommentPopup/CommentPopup';
+
 const MyOrders = () => {
 
     const { url, token } = useContext(StoreContext)
     const [data, setData] = useState([]);
+    const [showCommentPopup, setShowCommentPopup] = useState(false)
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     const fetchOrders = async () => {
         const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } })
@@ -18,6 +22,13 @@ const MyOrders = () => {
             fetchOrders()
         }
     }, [token])
+
+    const handleCommentClick = (order) => {
+        if (order.status === "Delivered") {
+            setSelectedOrder(order);
+            setShowCommentPopup(true);
+        }
+    }
 
     return (
         <div className='my-orders'>
@@ -38,11 +49,12 @@ const MyOrders = () => {
                             <p>${order.amount}.00</p>
                             <p>Items: {order.items.length}</p>
                             <p><span>&#x25cf;</span><b> {order.status}</b></p>
-                            <button onClick={fetchOrders} >Track Order</button>
+                            <button onClick={() => handleCommentClick(order)}>Track Order</button>
                         </div>
                     )
                 })}
             </div>
+            {showCommentPopup && <CommentPopup order={selectedOrder} setShowComment={setShowCommentPopup} />}
         </div>
     )
 }
