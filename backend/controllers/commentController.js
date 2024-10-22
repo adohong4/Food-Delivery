@@ -51,6 +51,45 @@ const addComment = async (req, res) => {
     }
 }
 
+const deleteComment = async (req, res) => {
+    try {
+        const comment = await commentModel.findByIdAndDelete(req.body.id);
+        if (!comment) {
+            return res.status(404).json({ success: false, message: "Comment not found" });
+        }
+        res.json({ success: true, message: "Comment Removed" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error" });
+    }
+};
 
-export { getAllComments, addComment };
+const getTopComments = async (req, res) => {
+    try {
+        const comments = await commentModel.find({ rating: { $gte: 4 } })
+            .populate({ path: 'userId', select: 'email' })
+            .populate({ path: 'orderId', select: '_id' })
+            .select('rating comment orderId userId')
+            .sort({ rating: -1 })
+            .limit(5);
+
+        res.json({
+            success: true,
+            data: comments.map(comment => ({
+                rating: comment.rating,
+                comment: comment.comment,
+                orderId: comment.orderId ? comment.orderId._id : null,
+                email: comment.userId ? comment.userId.email : null
+            }))
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+
+
+
+export { getAllComments, addComment, deleteComment, getTopComments };
 

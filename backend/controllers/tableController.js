@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import foodModel from "../models/foodModel.js";
 import userModel from "../models/userModel.js";
+import commentModel from "../models/commentModel.js";
 
 const getTopFoodSelected = async (req, res) => {
     try {
@@ -117,4 +118,42 @@ const paginateUser = async (req, res) => {
     }
 }
 
-export { getTopFoodSelected, paginateUser, paginateFood, paginateOrder };
+//paginate comment
+const paginateComments = async (req, res) => {
+    const page = parseInt(req.query.page) || 1; // current page
+    const limit = parseInt(req.query.limit) || 10; // number of comments per page
+    const startIndex = (page - 1) * limit;
+
+    try {
+        const comments = await commentModel.find()
+            .populate({ path: 'userId', select: 'email' })
+            .populate({ path: 'orderId', select: '_id' })
+            .select('rating comment orderId userId')
+            .sort({ createdAt: -1 })
+            .skip(startIndex)
+            .limit(limit);
+
+        const totalComments = await commentModel.countDocuments();
+        const totalPages = Math.ceil(totalComments / limit);
+
+        res.json({
+            success: true,
+            data: comments.map(comment => ({
+                rating: comment.rating,
+                comment: comment.comment,
+                orderId: comment.orderId ? comment.orderId._id : null,
+                email: comment.userId ? comment.userId.email : null
+            })),
+            page,
+            totalPages,
+            totalComments
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+
+
+export { getTopFoodSelected, paginateUser, paginateFood, paginateOrder, paginateComments };

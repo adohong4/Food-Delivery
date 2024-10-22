@@ -11,11 +11,11 @@ const Navbar = () => {
                     <img className="profile" src={assets.profile_image} alt="Profile" />
                 </div>
             </div>
-            <div className="section-banner">
+            {/* <div className="section-banner">
                 <div className="banner">
                     <h1 className="welcome-text">Welcome to Admin</h1>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

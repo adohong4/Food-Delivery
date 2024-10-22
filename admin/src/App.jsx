@@ -8,6 +8,7 @@ import List from './pages/List/List'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import User from './pages/User/User'
+import Comment from './pages/Comment/Comment'
 import Dashboard from './pages/DashBoard/DashBoard'
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/list" element={<List url={url} />} />
           <Route path="/user" element={<User url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
+          <Route path="/comment" element={<Comment url={url} />} />
         </Routes>
       </div>
     </div>
