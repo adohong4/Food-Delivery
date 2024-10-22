@@ -55,7 +55,7 @@ const MyOrders = () => {
                     )
                 })}
             </div>
-            {showCommentPopup && <CommentPopup order={selectedOrder} setShowComment={setShowCommentPopup} />}
+            {showCommentPopup && <CommentPopup setShowComment={setShowCommentPopup} orderId={selectedOrder._id} />}
         </div>
     )
 }

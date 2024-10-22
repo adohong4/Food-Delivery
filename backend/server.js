@@ -9,6 +9,8 @@ import orderRouter from "./routes/orderRoute.js";
 import statisticalRouter from "./routes/statisticalRoute.js";
 import chartPaymentRouter from "./routes/chartPaymentRoute.js";
 import tableRouter from "./routes/tableRoute.js";
+import commentRouter from "./routes/commentRoute.js";
+
 // app config
 const app = express();
 const port = process.env.PORT
@@ -30,7 +32,7 @@ app.use("/api/order", orderRouter)
 app.use("/api/statistical", statisticalRouter)
 app.use("/api/chart", chartPaymentRouter)
 app.use("/api/table", tableRouter)
-
+app.use("/api/comment", commentRouter)
 // db connection
 connectDB();
 

@@ -28,6 +28,10 @@ export const Sidebar = () => {
                         <i className="bi bi-box"></i>
                         <p>Orders item</p>
                     </NavLink>
+                    <NavLink to='/comment' className="sidebar-option">
+                        <i className="bi bi-box"></i>
+                        <p>Comment Order</p>
+                    </NavLink>
                 </div>
             </div>
         </div>
