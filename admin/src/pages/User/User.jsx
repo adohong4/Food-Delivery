@@ -131,7 +131,9 @@ const User = ({ url }) => {
                             <td>{item.name}</td>
                             <td>{item.email}</td>
                             <td>{item.password}</td>
-                            <td onClick={() => removeUser(item._id)} className='cursor'>X</td>
+                            <td>
+                                <button onClick={() => removeUser(item._id)} className='btn-update'> Delete</button>
+                            </td>
                             <td>
                                 <button onClick={() => openUpdatePopup(item)} className="btn-update">Update</button>
                             </td>

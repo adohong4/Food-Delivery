@@ -4,7 +4,15 @@
     gap: 20px;
     padding: 5%;
 }
-
+.explore-menu,
+.explore-menu h1,
+.explore-menu .explore-menu-context,
+.explore-menu .explore-menu-context,
+.explore-menu-list
+ {
+    position: relative;
+    z-index: 99;
+}
 .explore-menu h1 {
     color: #ff5722;
     font-weight: 500;
@@ -31,7 +39,16 @@
 .explore-menu-list::-webkit-scrollbar {
     display: none;
 }
-
+.img-background{
+    position: absolute;
+    background-repeat: repeat;
+    background-size: cover;
+    animation: moveUpDown 30s ease-in-out infinite;
+} 
+.img-background img{
+    width: 100%;
+    scale: 1.3;
+} 
 .explore-menu-list-item img {
     width: 7.5vw;
     min-width: 80px;
@@ -63,5 +80,17 @@
     .explore-menu-text {
         max-width: 100%;
         font-size: 14px;
+    }
+}
+
+@keyframes moveright {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(200px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }

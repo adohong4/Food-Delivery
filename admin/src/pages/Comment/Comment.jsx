@@ -41,7 +41,18 @@ const Comment = ({ url }) => {
             toast.error("Error deleting comment");
         }
     };
-
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                <span key={i} className={`star ${i <= rating ? 'filled' : ''}`}>
+                    ★
+                </span>
+            );
+        }
+        return stars;
+    };
+    
     const handlePageClick = (event) => {
         setCurrentPage(+event.selected + 1);
     };
@@ -64,9 +75,13 @@ const Comment = ({ url }) => {
                         <tr key={index} className='table-row'>
                             <td>{item.email}</td>
                             <td>{item.orderId}</td>
-                            <td>{item.rating}</td>
+                            <td>{renderStars(item.rating)}</td>
                             <td>{item.comment}</td>
-                            <td onClick={() => removeComment(item._id)} className='cursor'>X</td>
+                            <td>
+                                <button  onClick={() => removeComment(item._id)} className='btn-update'>
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -23,8 +23,10 @@ hr {
 
 .app-content {
   display: flex;
-  justify-content: center !important;
+  width: 100%; 
+  box-sizing: border-box; 
 }
+
 
 .flex-col {
   display: flex;
@@ -50,7 +52,6 @@ hr {
 
 .add-category select, .add-price input {
   padding: 12px 15px; 
-  border: 1px solid #ccc; 
   border-radius: 50px; 
   font-size: 100%; 
   background-color: #fff; 
@@ -70,23 +71,35 @@ hr {
 }
 
 
+.list-table {
+  display: flex;
+  flex-direction: column; 
+}
+
 .list-table-format {
-  display: grid;
-  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
-  align-items: center;
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 10px; 
   text-align: center;
-  gap: 10px;
-  padding: 12px 10px;
   border: none !important;
-  font-size: 13px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.list-table-format p{
+  font-weight: 400;
+  font-size: medium;
+  color: #000000c0;
+}
+.title {
+  font-weight: bold; 
+  background-color: #f0f0f0; 
 }
 .list-table-format img {
   width: 100%;
   border-radius: 10px;
 }
 .list-table-format.title {
-  background-color: #F29F05;
+  background-color: #000000c0;
+  text-align: center;
 }
 .list-table-format:hover{
   

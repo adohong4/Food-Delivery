@@ -3,7 +3,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 4%;
-    background: linear-gradient(to right, #f2b705, #f25c05);
     box-shadow: 0 5px 19px rgba(0, 0, 0, 0.3);
     border-bottom: none;
 }

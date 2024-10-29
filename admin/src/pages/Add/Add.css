@@ -1,9 +1,9 @@
 .add {
-    width: 70%;
-    margin-left: max(5vw, 25px);
+    width: 100%;
+    /* margin-left: max(5vw, 25px); */
     margin-top: 2%;
     color: #6d6d6d;
-    font-size: 1.25rem; /* Thay thế 'x-large' bằng giá trị cụ thể */
+    font-size: 1.25rem; 
 }
 
 .add .flex-col p {
@@ -89,10 +89,10 @@ body, input, select, textarea {
 }
 
 .form-group p{
-    color: #F28705;
+    color: #F25C05;
 }
 
-/* Custom responsive adjustments */
+
 @media (max-width: 768px) {
     .form-row .col-md-6 {
         flex: 0 0 100%;

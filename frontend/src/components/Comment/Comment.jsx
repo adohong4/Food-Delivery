@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
+import './Comment.css';
+import { assets } from '../../assets/assets'
 import { toast } from 'react-toastify';
 import ReactStars from "react-rating-stars-component";
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const TopComments = () => {
     const [comments, setComments] = useState([]);
-    const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext)
+    const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
     useEffect(() => {
         const fetchTopComments = async () => {
@@ -26,38 +31,49 @@ const TopComments = () => {
         fetchTopComments();
     }, [url]);
 
+    // Cấu hình cho Slick Slider
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
+
     return (
         <div>
-            <h2>Top 5 Comments</h2>
-            <table className="Comment-list-table">
-                <thead>
-                    <tr className="table-header">
-                        <th>Email</th>
-                        <th>Order Id</th>
-                        <th>Rating</th>
-                        <th>Comment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {comments.map((comment, index) => (
-                        <tr key={index} className='table-row'>
-                            <td>{comment.email}</td>
-                            <td>{comment.orderId}</td>
-                            <td>
-                                <ReactStars
-                                    count={5}
-                                    value={comment.rating}
-                                    size={24}
-                                    activeColor="#ffd700"
-                                    edit={false}
-                                />
-                            </td>
-                            <td>{comment.comment}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            
+            <div className='cmt-main'>
+                <div className='cmt-right'>
+                <h2>Our Customers’ Insights</h2>
+                    <Slider {...settings}>
+                        {comments.map((comment, index) => (
+                            <div key={index} className="comment-slide">
+                                <div className="comment-content"> {/* Khối chứa các thẻ <p> */}
+                                    <p><strong>Email:</strong> {comment.email}</p>
+                                    <p><strong>Order Id:</strong> {comment.orderId}</p>
+                                    <p>
+                                        <strong>Rating:</strong>
+                                        <ReactStars
+                                            count={5}
+                                            value={comment.rating}
+                                            size={24}
+                                            activeColor="#ffd700"
+                                            edit={false}
+                                        />
+                                    </p>
+                                    <p><strong>Comment:</strong> {comment.comment}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
+                <div className='cmt-left'>
+                    <img src={assets.banhxeo} alt="" />
+                </div>
+            </div>
         </div>
+
     );
 };
 

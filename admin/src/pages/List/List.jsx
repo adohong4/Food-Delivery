@@ -129,6 +129,7 @@ const List = ({ url }) => {
                     <b>Category</b>
                     <b>Price</b>
                     <b>Action</b>
+                    <b>Update</b>
                 </div>
                 {list.map((item, index) => (
                     <div key={index} className='list-table-format'>
@@ -136,8 +137,8 @@ const List = ({ url }) => {
                         <p>{item.name}</p>
                         <p>{item.category}</p>
                         <p>{item.price}</p>
-                        <p onClick={() => removeFood(item._id)} className='cursor'>X</p>
-                        <button onClick={() => openUpdatePopup(item)} className="btn-update">Update</button>
+                        <button onClick={() => removeFood(item._id)} className='cursor1' > Delete</button>
+                        <button onClick={() => openUpdatePopup(item)} className="btn-update1">Update</button>
                     </div>
                 ))}
             </div>

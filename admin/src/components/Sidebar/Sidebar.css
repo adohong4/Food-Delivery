@@ -1,13 +1,22 @@
 .sidebar {
-    width: 18vw;
+    width: 20vw;
     min-height: 100%;
     border-top: 0;
     font-size: max(1vw, 10px);
+    background: #000;
 }
-.sidebar .sidebar-options .sidebar-option p{
+.sidebar .sidebar-options .sidebar-option i,
+.sidebar .sidebar-options .sidebar-option p {
     text-transform: uppercase;
     font-weight: bold;
+    color: #fff; 
     margin-bottom: 0px !important;
+    transition: color 0.3s ease; 
+}
+
+.sidebar .sidebar-options .sidebar-option.active i,
+.sidebar .sidebar-options .sidebar-option.active p {
+    color: #000; 
 }
 
 .sidebar-options {
@@ -32,17 +41,18 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.sidebar-option:hover{
-    background-color: #f24405;
-    color: #fff;
+.sidebar-option:hover {
+    color: #000;
+    background-color: #DDDD;
+    text-decoration: none; 
 }
 
-
 a.sidebar-option.active {
-    background-color: #f24405;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     opacity: 1; 
     transform: translateX(0);
+    text-decoration: none; 
 }
 
 @media(max-width:1050px) {

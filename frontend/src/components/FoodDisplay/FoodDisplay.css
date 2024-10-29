@@ -9,6 +9,7 @@
     text-align: center;
 }
 
+
 .food-display-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -16,6 +17,8 @@
     gap: 30px; 
     padding-left: 5%;
     padding-right: 5%;
+    position: relative;
+    z-index: 99;
 }
 
 .food-item {
@@ -30,6 +33,7 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 @media (max-width: 1200px) {
     .food-display-list {
         grid-template-columns: repeat(3, 1fr); 

@@ -1,5 +1,7 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.png'
+import bg from './bg.png'; 
+import banhxeo from './banhxeo.png'; 
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
 import menu_1 from './menu_1.png'
@@ -87,7 +89,9 @@ export const assets = {
     banner1,
     banner2,
     banner3,
-    pngegg
+    pngegg,
+    bg,
+    banhxeo
 }
 
 export const menu_list = [
