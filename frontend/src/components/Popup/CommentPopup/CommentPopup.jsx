@@ -52,33 +52,33 @@ const CommentPopup = ({ setShowComment, orderId }) => {
     return (
         <div className='address-popup'>
             <form className="address-popup-container" onSubmit={handleSubmit}>
-                <div className="place-order-left">
-                    <div className="address-popup-title">
-                        <p className="title">Order Review</p>
-                        <img onClick={() => setShowComment(false)} src={assets.cross_icon} alt="" />
-                    </div>
-                    <p><span>Đánh giá của bạn</span></p>
+                <div className="address-popup-title">
+                    <p className="title">Order Review</p>
+                    <img className="close-icon" onClick={() => setShowComment(false)} src={assets.cross_icon} alt="Close" />
+                </div>
+                <div className="popup-content">
+                    <p className="review-title"><span>Đánh giá của bạn</span></p>
                     <div className="rating">
                         <ReactStars
                             name="rate1"
                             starCount={5}
                             value={rating}
-                            onChange={handleRatingChange} // Sử dụng hàm handleRatingChange
+                            onChange={handleRatingChange}
                         />
                     </div>
-                    <p>Nhận xét của bạn</p>
+                    <p className="comment-label">Nhận xét của bạn</p>
                     <textarea
+                        className="comment-textarea"
                         placeholder="Enter your comment here"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit" className="btn">
-                    Accept
-                </button>
+                <button type="submit" className="btn">Accept</button>
             </form>
         </div>
+
     );
 };
 

@@ -58,54 +58,46 @@ const Comment = ({ url }) => {
     };
 
     return (
-        <div className='Comment-list-container'>
-            <p>Comment List</p>
-            <table className="Comment-list-table">
-                <thead>
-                    <tr className="table-header">
-                        <th>Email</th>
-                        <th>Order Id</th>
-                        <th>Rating</th>
-                        <th>Comment</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list.map((item, index) => (
-                        <tr key={index} className='table-row'>
-                            <td>{item.email}</td>
-                            <td>{item.orderId}</td>
-                            <td>{renderStars(item.rating)}</td>
-                            <td>{item.comment}</td>
-                            <td>
-                                <button  onClick={() => removeComment(item._id)} className='btn-update'>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel=">"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={totalPages}
-                previousLabel="<"
-                renderOnZeroPageCount={null}
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-            />
-        </div>
+<div className="comment-list-container">
+    <h1>Comment List</h1>
+    <div className="comment-cards">
+        {list.map((item, index) => (
+            <div key={index} className="comment-card">
+                <div className="comment-header">
+                    <p className="comment-email">{item.email}</p>
+                    <div className="comment-rating">{renderStars(item.rating)}</div>
+                </div>
+                <p className="comment-text">{item.comment}</p>
+                <div className="comment-footer">
+                    <p className="comment-order">Order ID: {item.orderId}</p>
+                    <button onClick={() => removeComment(item._id)} className="btn-delete-cmt">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        ))}
+    </div>
+    <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+    />
+</div>
+
     );
 };
 

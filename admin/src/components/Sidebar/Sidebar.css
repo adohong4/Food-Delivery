@@ -1,10 +1,14 @@
 .sidebar {
-    width: 20vw;
+    width: 13vw;
     min-height: 100%;
     border-top: 0;
-    font-size: max(1vw, 10px);
+    font-size: max(0.8vw, 10px);
     background: #000;
+    position: relative;
+    z-index: 999;
 }
+
+
 .sidebar .sidebar-options .sidebar-option i,
 .sidebar .sidebar-options .sidebar-option p {
     text-transform: uppercase;
@@ -31,7 +35,6 @@
     display: flex;
     align-items: center;
     gap: 5%;
-    border-right: 0;
     padding: 8px 10px;
     border-radius: 3px 0px 0px 3px;
     cursor: pointer;
@@ -54,7 +57,50 @@ a.sidebar-option.active {
     transform: translateX(0);
     text-decoration: none; 
 }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.btn-confirm, .btn-cancel {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-confirm {
+    background-color: #f24405;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+}
+.swal2-title ,
+swal2-html-container{
+    font-family: 'bootstrap-icons';
+}
+.Logout .sidebar-option{
+    border-style:double;
+    border-radius: 50px;
+}
 @media(max-width:1050px) {
     .sidebar-option p {
         display: none;

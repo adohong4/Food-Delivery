@@ -5,6 +5,53 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+.user-list-table tr:hover {
+    background-color: #f3f3f3; /* Màu nền khi hover */
+    transition: background-color 0.3s ease;
+}
+.btn-update, .btn-delete, .search-container button, .popup-content button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-update:hover, .btn-delete:hover, .search-container button:hover, .popup-content button:hover {
+    transform: scale(1.05); /* Tăng kích thước nhẹ khi hover */
+}
+.popup {
+    opacity: 0;
+    animation: fadeIn 0.4s forwards; /* Sử dụng animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.search-container input:focus {
+    border-color: #f24405;
+    background-color: #fffbea;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.user-list-container {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards; /* Tạo animation xuất hiện từ dưới lên */
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .user-list-container p{
     color: #f24405;
     text-align: center;
@@ -92,7 +139,7 @@
     border-color: #f24405;
 }
 .table-header {
-    background-color: #f24405; 
+    background-color: #000000c0 !important; 
     color: white; 
 }
 .cursor {
@@ -108,15 +155,23 @@
 
 
 .btn-update {
-    background-image: linear-gradient(to bottom, #f24405, #f28705); 
+    background: #000000c0 !important; 
     color: white; 
     border: none;
     padding: 8px 12px;
     border-radius: 30px;
     cursor: pointer;
 }
+.btn-delete {
+    background: #fff; 
+    color: #000000c0; 
+    border: 2px solid #000000c0;
+    padding: 8px 12px;
+    border-radius: 30px;
+    cursor: pointer;
+}
 
-
+ 
 
 .btn-update:hover {
     background-image: linear-gradient(to top, #f24405, #f28705); 

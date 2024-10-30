@@ -65,6 +65,8 @@ import banner1 from './banner1.png'
 import banner2 from './banner2.png'
 import banner3 from './banner3.png'
 import pngegg from './pngegg.png'
+import anh4 from './anh4.png'
+import img1 from './img1.png'
 export const assets = {
     logo,
     basket_icon,
@@ -91,7 +93,9 @@ export const assets = {
     banner3,
     pngegg,
     bg,
-    banhxeo
+    banhxeo,
+    anh4,
+    img1
 }
 
 export const menu_list = [

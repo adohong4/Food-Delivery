@@ -38,75 +38,91 @@ const Profile = () => {
 
 
     return (
-        <div className='add'>
-            <div className="container my-4">
-                {/* <form onSubmit={onSubmitHandler}> */}
-                <div className="form-group">
-                    <p>Upload Image</p>
-                    <label htmlFor="image" className="d-block">
-                        <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="Upload Preview" className="img-thumbnail" style={{ cursor: 'pointer' }} />
-                    </label>
-                    <input
-                        onChange={(e) => setImage(e.target.files[0])}
-                        type="file"
-                        id="image"
-                        className="form-control-file"
-                        style={{ display: 'none' }}
-                        required
-                    />
+        <div className='profile'>
+            <div className="container my-4 d-flex">
+                <div className="profile-info">
+                    <h2 className='border-bt'>Profile Information</h2>
+                    <div className="form-group">
+                        <p>Upload Image</p>
+                        <label htmlFor="image" className="d-block">
+                            <img
+                                src={image ? URL.createObjectURL(image) : assets.upload_area}
+                                alt="Upload Preview"
+                                className="img-thumbnail upload-preview"
+                            />
+                        </label>
+                        <input
+                            onChange={(e) => setImage(e.target.files[0])}
+                            type="file"
+                            id="image"
+                            className="form-control-file"
+                            style={{ display: 'none' }}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <p>Username</p>
+                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                    </div>
+
+                    <div className="form-group">
+                        <p>Email</p>
+                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                    </div>
+
+                    <div className="form-group">
+                        <p>Password</p>
+                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                    </div>
+
+                    <button type="submit" className="btn btn-primary add-btn">
+                        SAVE CHANGES
+                    </button>
                 </div>
 
-                <div className="form-group">
-                    <p>Username</p>
-                    <input type="text" name='name' className="form-control" placeholder='Type here' />
+                <div className="my-address">
+                    <h2 className='border-bt'>My Address</h2>
+                    <button
+                        type="button"
+                        className="btn btn-primary add-btn"
+                        onClick={() => setShowAddressPopup(true)}
+                    >
+                        ADD ADDRESS
+                    </button>
+                    <div className="address-list">
+                        {addresses.map((address, index) => {
+                            return (
+                                <div key={index} className="my-address-addresses">
+                                    <img src={assets.parcel_icon} alt="" className="address-icon" />
+                                    <div className="address-details">
+                                        <p><span>{address.firstname} {address.lastname}</span></p>
+                                        <p>{address.street}</p>
+                                        <p>{address.city}</p>
+                                        <p>{address.state}</p>
+                                        <p>{address.zipcode}</p>
+                                        <p>{address.country}</p>
+                                        <p>{address.phone}</p>
+                                        <button onClick={fetchAddresses}>Edit</button>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-
-                <div className="form-group">
-                    <p>Email</p>
-                    <input type="text" name='name' className="form-control" placeholder='Type here' />
-                </div>
-
-                <div className="form-group">
-                    <p>Password</p>
-                    <input type="text" name='name' className="form-control" placeholder='Type here' />
-                </div>
-
-                <button type="submit" className="btn btn-primary add-btn">
-                    SAVE CHANGES
-                </button>
-                {/* </form> */}
+                
             </div>
-
-            <div className="my-address">
-                <h2>My Adress</h2>
-                <button
-                    type="button"
-                    className="btn btn-primary add-btn"
-                    onClick={() => setShowAddressPopup(true)}
-                >
-                    ADD ADDRESS
-                </button>
-                <div className="container">
-                    {addresses.map((address, index) => {
-                        return (
-                            <div key={index} className="my-address-addresses">
-                                <img src={assets.parcel_icon} alt="" />
-                                <p><span>{address.firstname} {address.lastname}</span></p>
-                                <p>{address.street}</p>
-                                <p>{address.city}</p>
-                                <p>{address.state}</p>
-                                <p>{address.zipcode}</p>
-                                <p>{address.country}</p>
-                                <p>{address.phone}</p>
-                                <button onClick={fetchAddresses} >Edit</button>
-                            </div>
-                        )
-                    })}
+            <div className='background'>
+                <div className='background-left'>
+                    <img src={assets.anh4} alt="" />
                 </div>
-            </div>
+                <div className='background-right'>
+                    <img src={assets.img1} alt="" />
+                </div>
+            </div>            
             {showAddressPopup && <AddressPopup setShowAddress={setShowAddressPopup} />}
-
         </div>
+
     )
 }
 

@@ -1,233 +1,151 @@
-.Comment-list-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+.comment-list-container {
+    padding: 40px;
+    background-color: #fff;
+    color: #333;
+    width: 100vw;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.Comment-list-container p {
-    color: #f24405;
+.comment-list-container p {
+    color: #333;
+    font-size: 1rem;
     text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
-.star {
-    font-size: 20px;
-    color: lightgray; 
+.comment-list-container h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Card Container */
+.comment-cards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.comment-card {
+    border: 2px solid #000000c0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.comment-email {
+    font-weight: bold;
+    color: #333;
+}
+
+.star-rating {
+    font-size: 16px;
 }
 
 .star.filled {
-    color: gold; 
-}
-
-.Comment-list-container p {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
+    color: #f24405; 
 }
 
 
-.Comment-list-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+
+/* Comment Text */
+.comment-text {
+    color: #666;
+    margin: 10px 0 15px;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
-.Comment-list-table th,
-.Comment-list-table td {
-    padding: 12px 15px;
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 
-.Comment-list-table th:nth-child(1),
-.Comment-list-table td:nth-child(1) {
-    max-width: 300px;
-}
-
-.Comment-list-table th:nth-child(2),
-.Comment-list-table td:nth-child(2) {
-    max-width: 200px;
-}
-
-.Comment-list-table th:nth-child(3),
-.Comment-list-table td:nth-child(3) {
-    max-width: 200px;
-}
-
-.Comment-list-table td:nth-child(4),
-.Comment-list-table th:nth-child(4),
-.Comment-list-table td:nth-child(5),
-.Comment-list-table th:nth-child(5) {
-    text-align: center;
-    max-width: 150px;
-}
-
-.page-link:hover,
-.page-link {
-    color: #000;
-}
-
-.search-container {
+.comment-footer {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: right;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.search-container input {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #f28705;
-    border-radius: 40px;
-    font-size: 16px;
+.comment-order {
+    color: #999;
+    font-size: 14px;
 }
 
-.search-container button {
-    padding: 10px 15px;
+
+.btn-delete-cmt {
     background-color: #000000c0;
-    color: white;
+    color: #fff;
     border: none;
-    border-radius: 40px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    
     cursor: pointer;
-    font-size: 16px;
     transition: background-color 0.3s ease;
 }
 
-.search-container button:hover {
-    background-color: #f24405;
+.btn-delete-cmt:hover {
+    background: #fff;
+    color: #333;
+    border: 2px solid #333;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
 }
 
 .page-item.active .page-link {
-    z-index: 3;
     color: #fff;
-    background-color: #f24405;
-    border-color: #f24405;
+    background-color: #000000c0;
+    border-color: #333;
 }
 
-.table-header {
-    background-color: #f24405;
-    color: white;
+.page-link {
+    color: #666;
 }
 
-.cursor {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-}
-
-
-
-
-.btn-update {
-    background-image: linear-gradient(to bottom, #f24405, #f28705);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 30px;
-    cursor: pointer;
-}
-
-
-
-.btn-update:hover {
-    background-image: linear-gradient(to top, #f24405, #f28705);
-}
-
-
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.popup-content label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.popup-content input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-
-.popup-content button {
-    background-color: #f28705;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.popup-content button:hover {
-    background-color: #f24405;
-}
-
-
-.popup-content button:nth-of-type(2) {
-    background-color: #f28705;
-}
-
-.popup-content button:nth-of-type(2):hover {
-    background-color: #f24405;
+.page-link:hover {
+    color: #f24405;
 }
 
 
 @media screen and (max-width: 768px) {
+    .comment-list-container p {
+        font-size: 24px;
+    }
 
-    .Comment-list-table th,
-    .Comment-list-table td {
+    .comment-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .comment-card {
+        padding: 15px;
+    }
+
+    .comment-text {
         font-size: 14px;
-        padding: 10px;
     }
 
-    .Comment-list-table th:nth-child(1),
-    .Comment-list-table td:nth-child(1) {
-        max-width: 100px;
-    }
-
-    .Comment-list-table th:nth-child(3),
-    .Comment-list-table td:nth-child(3) {
-        max-width: 80px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-
-    .Comment-list-table th,
-    .Comment-list-table td {
-        font-size: 12px;
-    }
-
-    .Comment-list-table th:nth-child(1),
-    .Comment-list-table td:nth-child(1) {
-        max-width: 80px;
-    }
-
-    .Comment-list-table th:nth-child(3),
-    .Comment-list-table td:nth-child(3) {
-        max-width: 60px;
+    .btn-delete-cmt {
+        padding: 6px 12px;
     }
 }

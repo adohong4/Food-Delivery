@@ -46,39 +46,85 @@ const Add = ({ url }) => {
 
 
     return (
-        <div className='add'>
-            <div className="container my-4">
+        <div className="add d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+            <div className='img-bgr1'>
+                    <img src={assets.anh1} alt="" />
+            </div>
+            <div className='img-bgr2'>
+                    <img src={assets.anh3} alt="" />
+            </div>
+            <div className="card p-5 shadow-lg border-0" style={{ maxWidth: '700px', width: '100%', borderRadius: '15px' }}>
+                
+                <h2 className="text-center mb-4">Add New Product</h2>
+
                 <form onSubmit={onSubmitHandler}>
-                    <div className="form-group">
-                        <p>Upload Image</p>
-                        <label htmlFor="image" className="d-block">
-                            <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="Upload Preview" className="img-thumbnail" style={{ cursor: 'pointer' }} />
+                    {/* Upload Image Section */}
+                    <div className="form-group text-center">
+                        <p className="font-weight-bold mb-1">Upload Image</p>
+                        <label htmlFor="image" style={{ cursor: 'pointer' }}>
+                            <img
+                                src={image ? URL.createObjectURL(image) : assets.upload_area}
+                                alt="Upload Preview"
+                                className="rounded-circle shadow-sm"
+                                style={{
+                                    width: '150px',
+                                    height: '150px',
+                                    objectFit: 'cover',
+                                    border: '3px dashed #ddd',
+                                    padding: '10px'
+                                }}
+                            />
                         </label>
                         <input
                             onChange={(e) => setImage(e.target.files[0])}
                             type="file"
                             id="image"
-                            className="form-control-file"
-                            style={{ display: 'none' }}
+                            className="d-none"
                             required
                         />
-
                     </div>
 
+                    {/* Product Name */}
                     <div className="form-group">
-                        <p>Product name</p>
-                        <input onChange={onChangeHandler} value={data.name} type="text" name='name' className="form-control" placeholder='Type here' />
+                        <label htmlFor="name" className="mb-2">Product Name</label>
+                        <input
+                            onChange={onChangeHandler}
+                            value={data.name}
+                            type="text"
+                            name="name"
+                            id="name"
+                            className="form-control rounded-pill"
+                            placeholder="Enter product name"
+                            required
+                        />
                     </div>
 
+                    {/* Product Description */}
                     <div className="form-group">
-                        <p>Product description</p>
-                        <textarea onChange={onChangeHandler} value={data.description} name="description" rows="6" className="form-control" placeholder='Write content here'></textarea>
+                        <label htmlFor="description" className="mb-2">Description</label>
+                        <textarea
+                            onChange={onChangeHandler}
+                            value={data.description}
+                            name="description"
+                            id="description"
+                            rows="4"
+                            className="form-control"
+                            placeholder="Describe the product"
+                            style={{ borderRadius: '15px' }}
+                        ></textarea>
                     </div>
 
+                    {/* Product Details */}
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <p>Product Category</p>
-                            <select onChange={onChangeHandler} value={data.category} name="category" className="form-control">
+                            <label htmlFor="category" className="mb-2">Category</label>
+                            <select
+                                onChange={onChangeHandler}
+                                value={data.category}
+                                name="category"
+                                id="category"
+                                className="form-control rounded-pill"
+                            >
                                 <option value="Salad">Salad</option>
                                 <option value="Rolls">Rolls</option>
                                 <option value="Deserts">Deserts</option>
@@ -91,17 +137,31 @@ const Add = ({ url }) => {
                         </div>
 
                         <div className="form-group col-md-6">
-                            <p>Product Price</p>
-                            <input onChange={onChangeHandler} value={data.price} type="number" name="price" className="form-control" placeholder="$20" />
+                            <label htmlFor="price" className="mb-2">Price ($)</label>
+                            <input
+                                onChange={onChangeHandler}
+                                value={data.price}
+                                type="number"
+                                name="price"
+                                id="price"
+                                className="form-control rounded-pill"
+                                placeholder="20"
+                            />
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary add-btn">
-                        ADD ITEMS
-                    </button>
+                    {/* Submit Button */}
+                    <div className="text-center mt-4">
+                        <button type="submit" className="btn btn-primary rounded-pill px-4 py-2">
+                            Add Product
+                        </button>
+                    </div>
                 </form>
+                
             </div>
+            
         </div>
+
     )
 }
 
