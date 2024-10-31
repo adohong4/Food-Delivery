@@ -16,7 +16,7 @@ const formatPaymentsData = (payments, unit) => {
         case "day":
             result = Array.from({ length: 8 }, (_, i) => {
                 const date = new Date();
-                date.setDate(date.getDate() - i);
+                date.setDate(date.getDate() - (7 - i));
                 const day = date.getDate();
                 const month = date.getMonth() + 1; // January is 0
                 const year = date.getFullYear();
@@ -30,7 +30,7 @@ const formatPaymentsData = (payments, unit) => {
         case "week":
             result = Array.from({ length: 8 }, (_, i) => {
                 const date = new Date();
-                date.setDate(date.getDate() - (i * 7));
+                date.setDate(date.getDate() - ((7 - i) * 7));
                 const week = getISOWeek(date);
                 const year = date.getFullYear();
                 const payment = payments.find(p => p._id.week === week && p._id.year === year);
@@ -44,7 +44,7 @@ const formatPaymentsData = (payments, unit) => {
         case "month":
             result = Array.from({ length: 8 }, (_, i) => {
                 const month = new Date();
-                month.setMonth(month.getMonth() - i);
+                month.setMonth(month.getMonth() - (7 - i));
                 const year = month.getFullYear();
                 const monthIndex = month.getMonth() + 1; // Months from 1 to 12
                 const payment = payments.find(p => p._id.month === monthIndex && p._id.year === year);
@@ -57,7 +57,7 @@ const formatPaymentsData = (payments, unit) => {
             break;
         case "year":
             result = Array.from({ length: 5 }, (_, i) => {
-                const year = today.getFullYear() - i;
+                const year = today.getFullYear() - (4 - i);
                 const payment = payments.find(p => p._id.year === year);
                 return {
                     year: year,
@@ -71,6 +71,7 @@ const formatPaymentsData = (payments, unit) => {
 
     return result;
 };
+
 
 const getPayments = async (req, res) => {
     const { period } = req.query;

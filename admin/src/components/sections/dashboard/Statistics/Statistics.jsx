@@ -1,11 +1,11 @@
 import React from 'react';
-import ChartComponent from './chartComponent';
+import Chart from './Chart.jsx';
 
 const ChartContainer = ({ url }) => {
     return (
         <div>
             <h1>Payment Charts</h1>
-            <ChartComponent url={url} />
+            <Chart url={url} />
         </div>
     );
 };
