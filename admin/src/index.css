@@ -110,7 +110,22 @@ hr {
   text-transform: uppercase;
 }
 
-
+.sidebar {
+  width: 13vw;
+  min-height: 100vh;
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  font-size: max(0.8vw, 10px);
+}
+.main-section {
+  margin-left: 13vw; /* Để chừa khoảng trống cho sidebar */
+  padding: 20px;
+  width: calc(100% - 13vw); /* Đảm bảo phần còn lại sẽ là nội dung chính */
+  overflow-y: auto; /* Thêm cuộn dọc nếu nội dung dài hơn màn hình */
+}
 @media (max-width: 768px) {
   .app-content {
     display: block;

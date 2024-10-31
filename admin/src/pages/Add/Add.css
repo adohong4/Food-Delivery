@@ -92,7 +92,7 @@ body, input, select, textarea {
     width: 500px;
     position: absolute;
     left: 50px;
-    bottom: -250px ;
+    bottom: -170px ;
     animation: moveUpDown 10s infinite;
 }
 .add-btn:hover {

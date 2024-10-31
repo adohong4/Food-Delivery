@@ -21,16 +21,20 @@ const App = () => {
       <Navbar />
       <hr />
       <div className="app-content">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/add" replace />} />
-          <Route path="/dashboard" element={<Dashboard url={url} />} />
-          <Route path="/add" element={<Add url={url} />} />
-          <Route path="/list" element={<List url={url} />} />
-          <Route path="/user" element={<User url={url} />} />
-          <Route path="/orders" element={<Orders url={url} />} />
-          <Route path="/comment" element={<Comment url={url} />} />
-        </Routes>
+        <div className='section-sidebar'>
+          <Sidebar />
+        </div>
+        <div className='main-section'>
+          <Routes>
+            <Route path="/" element={<Navigate to="/add" replace />} />
+            <Route path="/dashboard" element={<Dashboard url={url} />} />
+            <Route path="/add" element={<Add url={url} />} />
+            <Route path="/list" element={<List url={url} />} />
+            <Route path="/user" element={<User url={url} />} />
+            <Route path="/orders" element={<Orders url={url} />} />
+            <Route path="/comment" element={<Comment url={url} />} />
+          </Routes>
+        </div>
       </div>
     </div>
   )

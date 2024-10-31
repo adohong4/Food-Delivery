@@ -8,9 +8,12 @@ export const Sidebar = () => {
     return (
         <div className="section-sidebar">
             <div className="sidebar">
+                <div className='logo-sidebar'>
+                    <img className="logo" src={assets.logo} alt="Logo" />
+                </div>
                 <div className="sidebar-options">
                     <NavLink to='/dashboard' className="sidebar-option">
-                        <i className="bi bi-plus-circle"></i>
+                        <i class="bi bi-file-earmark-bar-graph"></i>
                         <p>Dash Board</p>
                     </NavLink>
                     <NavLink to='/add' className="sidebar-option">
@@ -30,7 +33,7 @@ export const Sidebar = () => {
                         <p>Orders item</p>
                     </NavLink>
                     <NavLink to='/comment' className="sidebar-option">
-                        <i className="bi bi-box"></i>
+                        <i class="bi bi-chat-left-text"></i>
                         <p>Comment Order</p>
                     </NavLink>
                     <div className='Logout'>

@@ -63,7 +63,7 @@ const PieChart = ({ url }) => {
                 <h3>Orders by Status</h3>
                 <div className='orders'>
                     {/* Chart for User Factors */}
-                    <div className='orders-right'>
+                    <div className='orders-right-2'>
                         <Pie data={chartData} options={{
                             responsive: true,
                             plugins: {

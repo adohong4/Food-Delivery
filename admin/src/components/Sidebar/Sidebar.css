@@ -97,10 +97,28 @@ a.sidebar-option.active {
 swal2-html-container{
     font-family: 'bootstrap-icons';
 }
-.Logout .sidebar-option{
-    border-style:double;
-    border-radius: 50px;
+.logo-sidebar{
+    text-align: center;
+    background-color: #DDDD;
+    border-bottom: 1px solid #ccc;
 }
+.Logout{
+    width: 10vw;
+    position: fixed;
+    bottom: 25px;
+}
+.Logout .sidebar-option {
+    border-style: double;
+    border-radius: 50px;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.Logout .sidebar-option:hover {
+    background-color: #ccc;
+    transform: scale(1.05); 
+}
+
 @media(max-width:1050px) {
     .sidebar-option p {
         display: none;
