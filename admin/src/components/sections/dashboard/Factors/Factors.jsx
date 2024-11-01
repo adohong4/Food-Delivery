@@ -74,7 +74,7 @@ const Factors = ({ url }) => {
                     <p>{stats.totalOrders}</p>
                 </div>
                 <div className="info-card">
-                    <h3>Total Revenue</h3>
+                    <h3>Total Revenue/ Day</h3>
                     <p>${stats.totalRevenue.toFixed(2)}</p>
                 </div>
                 <div>

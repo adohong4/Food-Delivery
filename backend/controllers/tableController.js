@@ -2,45 +2,52 @@ import orderModel from "../models/orderModel.js";
 import foodModel from "../models/foodModel.js";
 import userModel from "../models/userModel.js";
 import commentModel from "../models/commentModel.js";
+import mongoose from 'mongoose';
 
 const getTopFoodSelected = async (req, res) => {
     try {
-        const topFoods = await orderModel.aggregate([
-            { $unwind: "$items" }, // Tách từng item trong đơn hàng ra
-            {
-                $group: {
-                    _id: "$items._id", // Nhóm theo id của món ăn
-                    totalQuantity: { $sum: "$items.quantity" }
-                }
-            },
-            { $sort: { totalQuantity: -1 } }, // Sắp xếp theo tổng số lượng giảm dần
-            { $limit: 10 }, // Giới hạn kết quả top 10 món ăn
-            {
-                $lookup: {
-                    from: "foods", // Tên collection chứa món ăn
-                    localField: "_id",
-                    foreignField: "_id",
-                    as: "foodDetails"
-                }
-            },
-            { $unwind: "$foodDetails" }, // Tách từng chi tiết món ăn ra
-            {
-                $project: {
-                    _id: 1,
-                    totalQuantity: 1,
-                    "foodDetails.name": 1,
-                    "foodDetails.description": 1,
-                    "foodDetails.price": 1,
-                    "foodDetails.image": 1,
-                    "foodDetails.category": 1
-                }
-            }
-        ]);
+        const orders = await orderModel.find();
+        const foodCount = {};
 
-        res.json({ success: true, data: topFoods });
+        // Count food in each order
+        orders.forEach(order => {
+            order.items.forEach(item => {
+                const foodId = item._id; // get id food in order
+                const quantity = item.quantity || 1;
+
+                if (foodId) {  //check foodId is valid
+                    if (foodCount[foodId]) {
+                        foodCount[foodId] += quantity;
+                    } else {
+                        foodCount[foodId] = quantity;
+                    }
+                }
+            });
+        });
+
+        // change object to array and sort
+        const sortedFoods = Object.keys(foodCount)
+            .map(foodId => ({ foodId, count: foodCount[foodId] }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 10);
+
+        // what is FoodId checking valid?
+        const foodIds = sortedFoods.map(food => food.foodId).filter(id => mongoose.Types.ObjectId.isValid(id));
+
+        if (foodIds.length === 0) {
+            return res.status(404).json({ message: "No valid food IDs found." });
+        }
+
+        const topFoods = await foodModel.find({ _id: { $in: foodIds } });
+
+        const result = topFoods.map(food => {
+            const count = sortedFoods.find(item => item.foodId.toString() === food._id.toString()).count;
+            return { ...food._doc, count };
+        });
+
+        return res.status(200).json(result);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Server error" });
+        return res.status(500).json({ error: error.message });
     }
 };
 
