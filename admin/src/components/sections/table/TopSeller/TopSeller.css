@@ -1,15 +1,17 @@
 .list-table-format {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr 1fr 0.5fr 1fr;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
     gap: 5px;
     padding: 12px 10px;
     border: 1px solid #cacaca;
     font-size: 13px;
 }
-.list{
+
+.list {
     padding: 20px;
 }
+
 .top-list-tiltle {
     display: flex;
 }
@@ -34,7 +36,7 @@
     cursor: pointer;
 }
 
-.cursor1, 
+.cursor1,
 .btn-update1 {
     background-color: #fff;
     border: none;
@@ -43,6 +45,7 @@
     height: 50%;
     border: 1px solid #2c3e50;
 }
+
 .btn-update1 {
     width: 50%;
     margin: 0 auto;
@@ -188,11 +191,14 @@
     width: 50%;
     max-width: 400px;
 }
-.cursor1, .btn-update1 {
+
+.cursor1,
+.btn-update1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cursor1:hover, .btn-update1:hover {
+.cursor1:hover,
+.btn-update1:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
@@ -202,6 +208,7 @@
         opacity: 0;
         transform: scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -217,6 +224,7 @@
         opacity: 0;
         transform: translateX(-50px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -236,9 +244,12 @@
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-5px);
     }
@@ -247,6 +258,7 @@
 .popup-content button:hover {
     animation: bounce 0.3s ease-in-out;
 }
+
 @media (max-width: 480px) {
     .popup-content {
         width: 90%;

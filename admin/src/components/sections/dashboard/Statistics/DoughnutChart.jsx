@@ -9,10 +9,6 @@ ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
 const DoughnutChart = ({ url }) => {
     const [stats, setStats] = useState({
-        totalUsers: 0,
-        totalOrders: 0,
-        totalFoods: 0,
-        totalRevenue: 0,
         ordersByStatus: []
     });
 
@@ -37,22 +33,18 @@ const DoughnutChart = ({ url }) => {
 
     // Prepare data for the bar chart
     const chartData = {
-        labels: ['Total Users', 'Total Orders', 'Total Foods', 'Total Revenue'],
+        labels: stats.ordersByStatus.map(status => status._id),
         datasets: [
             {
-                label: 'User Factors',
-                data: [
-                    stats.totalUsers,
-                    stats.totalOrders,
-                    stats.totalFoods,
-                    stats.totalRevenue,
-                ],
+                label: 'Status Ordering',
+                data: stats.ordersByStatus.map(status => status.count),
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.6)', // Màu cho Total Users
-                    'rgba(255, 99, 132, 0.6)', // Màu cho Total Orders
-                    'rgba(255, 206, 86, 0.6)', // Màu cho Total Foods
-                    'rgba(54, 162, 235, 0.6)', // Màu cho Total Revenue
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
                 ],
+                hoverOffset: 10,
             },
         ],
     };

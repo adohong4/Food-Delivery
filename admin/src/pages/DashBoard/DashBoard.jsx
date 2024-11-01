@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import Factors from '../../components/sections/dashboard/Factors/Factors.jsx';
-import ChartContainer from '../../components/sections/dashboard/Statistics/Statistics.jsx';
 import './Dashboard.css';
-
-
+import DoughnutChart from '../../components/sections/dashboard/Statistics/DoughnutChart.jsx';
+import PaymentLineChart from '../../components/sections/dashboard/Statistics/PaymentLineChart.jsx';
+import UserFactors from '../../components/sections/dashboard/Factors/UserFactor.jsx';
+import TopSeller from '../../components/sections/table/TopSeller/TopSeller.jsx';
+import OrdersByStatus from '../../components/sections/dashboard/Factors/OrdersByStatus.jsx';
 
 
 const Dashboard = ({ url }) => {
     return (
         <div className='Dashboard'>
-            <Factors url={url} />
-            <ChartContainer url={url} />
+            <div className='Chart'>
+                <PaymentLineChart url={url} />
+                <DoughnutChart url={url} />
+            </div>
+            <UserFactors url={url} />
+            <div>
+                <OrdersByStatus url={url} />
+                <TopSeller url={url} />
+            </div>
+
         </div>
     )
 };
