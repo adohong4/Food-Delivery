@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import './Comment.css';
-import { assets } from '../../assets/assets'
 import { toast } from 'react-toastify';
 import ReactStars from "react-rating-stars-component";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const TopComments = () => {
+const TopComments = ({ url }) => {
     const [comments, setComments] = useState([]);
-    const { url } = useContext(StoreContext);
 
     useEffect(() => {
         const fetchTopComments = async () => {
@@ -67,9 +64,6 @@ const TopComments = () => {
                             </div>
                         ))}
                     </Slider>
-                </div>
-                <div className='cmt-left'>
-                    <img src={assets.banhxeo} alt="" />
                 </div>
             </div>
         </div>

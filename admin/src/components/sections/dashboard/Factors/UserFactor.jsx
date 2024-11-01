@@ -6,8 +6,6 @@ const UserFactors = ({ url }) => {
     const [stats, setStats] = useState({
         totalUsers: 0,
         totalOrders: 0,
-        totalFoods: 0,
-        totalRevenue: 0,
     });
 
     const fetchFactors = async () => {
@@ -38,16 +36,8 @@ const UserFactors = ({ url }) => {
                     <p>{stats.totalUsers}</p>
                 </div>
                 <div className="info-card">
-                    <h3>Total Foods</h3>
-                    <p>{stats.totalFoods}</p>
-                </div>
-                <div className="info-card">
                     <h3>Total Orders</h3>
                     <p>{stats.totalOrders}</p>
-                </div>
-                <div className="info-card">
-                    <h3>Total Revenue/ Day</h3>
-                    <p>${stats.totalRevenue.toFixed(2)}</p>
                 </div>
             </div>
         </div>
