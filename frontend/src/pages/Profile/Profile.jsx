@@ -97,9 +97,6 @@ const Profile = () => {
                                     <img src={assets.parcel_icon} alt="" className="address-icon" />
                                     <div className="address-details">
                                         <p><span>{address.lastname} {address.firstname}</span></p>
-
-                                        <p></p>
-                                        <p></p>
                                         <div className='address-details-body'>
                                             <div className='address-details-left'>
                                                 <p>{address.street}, {address.state}, {address.city}, {address.country}, {address.zipcode}, {address.phone}</p>

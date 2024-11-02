@@ -3,12 +3,14 @@ import './List.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const List = ({ url }) => {
+const List = ({ url, category }) => {
     const [list, setList] = useState([]);
     const [showPopup, setShowPopup] = useState(false); // State điều khiển popup
     const [currentFood, setCurrentFood] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
     const [newImage, setNewImage] = useState(null); // State lưu hình ảnh mới
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [sort, setSort] = useState('Sort By');
 
     const fetchList = async () => {
         const response = await axios.get(`${url}/api/food/list`);
@@ -100,6 +102,24 @@ const List = ({ url }) => {
         }
     };
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    };
+
+    const handleSortChange = (e) => {
+        setSort(e.target.value);
+    };
+    const sortedList = [...list]
+        .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
+        .sort((a, b) => {
+            if (sort === 'Asc') {
+                return a.price - b.price;
+            } else if (sort === 'Desc') {
+                return b.price - a.price;
+            }
+            return 0;
+        });
+
 
     return (
         <div className='list add flex-col'>
@@ -107,20 +127,43 @@ const List = ({ url }) => {
                 <div className='col-lg-6 tittle-right'>
                     <p>All Foods List</p>
                 </div>
+                <div className="sort-container">
+                    <select id="sort" onChange={handleSortChange}>
+                        <option value="Sort By">Sort By</option>
+                        <option value="Asc">Asc</option>
+                        <option value="Desc">Desc</option>
+                    </select>
+                </div>
+
+
+                <div className="selected-container">
+                    <select id="category" onChange={handleCategoryChange}>
+                        <option value="All" selected>All</option>
+                        <option value="Salad">Salad</option>
+                        <option value="Rolls">Rolls</option>
+                        <option value="Deserts">Deserts</option>
+                        <option value="Sandwich">Sandwich</option>
+                        <option value="Drink">Drink</option>
+                        <option value="Pure Veg">Pure Veg</option>
+                        <option value="Pasta">Pasta</option>
+                        <option value="Noodles">Noodles</option>
+                    </select>
+                </div>
                 <div className='col-lg-6 search-left'>
-                <div className="search-container">
-                    <input
-                        type="text"
-                        placeholder="Search by Food name"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button onClick={handleSearch}>Search</button>
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Search by Food name"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button onClick={handleSearch}>Search</button>
                     </div>
                 </div>
+
             </div>
-            
-            
+
+
 
             <div className="list-table">
                 <div className="list-table-format title">
@@ -131,7 +174,8 @@ const List = ({ url }) => {
                     <b>Action</b>
                     <b>Update</b>
                 </div>
-                {list.map((item, index) => (
+                {sortedList.map((item, index) => (
+                    // if (category === "All" || category === item.category) {}
                     <div key={index} className='list-table-format'>
                         <img src={`${url}/images/${item.image}`} alt="" />
                         <p>{item.name}</p>

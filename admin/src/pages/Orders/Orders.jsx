@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
 import ReactPaginate from 'react-paginate';
+import Factors from '../../components/sections/dashboard/Factors/Factors';
 
 const Orders = ({ url }) => {
     const [orders, setOrders] = useState([]);
@@ -116,7 +117,7 @@ const Orders = ({ url }) => {
         printWindow.document.close();
         printWindow.print();
     };
-    
+
     const statusHandler = async (event, orderId) => {
         const selectedValue = event.target.value;
 
@@ -160,7 +161,9 @@ const Orders = ({ url }) => {
     };
 
     return (
+
         <div className="order-name">
+            <Factors url={url} />
             <h3>Order Page</h3>
             <div className="order-list">
                 {orders.map((order, index) => (
@@ -260,7 +263,7 @@ const Orders = ({ url }) => {
                                 <p>${selectedOrder.amount}</p>
                                 <div className='btn-group'>
                                     <button onClick={closePopup}>Close</button>
-                                    <button onClick={printInvoice}>Print Invoice</button> 
+                                    <button onClick={printInvoice}>Print Invoice</button>
                                 </div>
                             </div>
                         )}

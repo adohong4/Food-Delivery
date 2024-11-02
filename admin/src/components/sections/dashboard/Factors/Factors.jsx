@@ -81,35 +81,6 @@ const Factors = ({ url }) => {
 
                 </div>
             </div>
-            <div className="orders-status">
-                <h3>Orders by Status</h3>
-                <div className='orders'>
-                    <div className='orders-left'>
-                        <ul>
-                            {stats.ordersByStatus.map((status, index) => (
-                                <li key={index}>
-                                    <span className="status-label">{status._id}</span> <span className="status-count">{status.count}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    {/* Chart for User Factors */}
-                    <div className='orders-right'>
-                        <Pie data={chartData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'User Factors Overview',
-                                },
-                            },
-                        }} />
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
