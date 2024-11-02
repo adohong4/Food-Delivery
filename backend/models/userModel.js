@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     addresses: [AddressSchema],
     cartData: { type: Object, default: {} }
-}, { minimize: false })
+}, { minimize: false, timestamps: true })
 
 const userModel = mongoose.models.user || mongoose.model("users", UserSchema)
 
