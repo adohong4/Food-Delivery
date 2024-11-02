@@ -97,12 +97,19 @@ const Profile = () => {
                                     <img src={assets.parcel_icon} alt="" className="address-icon" />
                                     <div className="address-details">
                                         <p><span>{address.firstname} {address.lastname}</span></p>
-                                        <p>{address.street}</p>
-                                        <p>{address.city}</p>
-                                        <p>{address.state}</p>
-                                        <p>{address.zipcode}</p>
-                                        <p>{address.country}</p>
-                                        <p>{address.phone}</p>
+                                        <div className='address-details-body'>
+                                            <div className='address-details-left'>
+                                                <p>{address.street}</p>
+                                                <p>{address.city}</p>
+                                                <p>{address.state}</p>
+                                            </div>
+                                            <div className='address-details-right'>
+                                                <p>{address.zipcode}</p>
+                                                <p>{address.country}</p>
+                                                <p>{address.phone}</p>
+                                            </div>
+                                        </div>
+                                        
                                         <button onClick={fetchAddresses}>Edit</button>
                                     </div>
                                 </div>

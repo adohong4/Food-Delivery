@@ -5,6 +5,7 @@
     background-position: center;
     border-radius: 15px;
     overflow: hidden; 
+    margin-left: 67px;
 }
 
 .slick-slider::before {
@@ -47,19 +48,23 @@
    font-weight: bold;
 }
 .cmt-left {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 600px; 
+    overflow: hidden; 
+    border-radius: 8px; 
 }
 
 .cmt-left img {
-    width: 50%;
     position: absolute;
-    height: auto;
-    border-radius: 8px;
+    width: auto;
+    height: 100%; 
+    top: 0;
+    transform: translateX(-50%); 
+    object-fit: cover;
     animation: moveUpDown 10s infinite;
 }
+
 
 .cmt-right {
     width: 60%;

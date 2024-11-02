@@ -126,6 +126,60 @@ h2.border-bt {
     right: 0;
     /* animation: LefttoRight 10s ease-in-out infinite alternate;  */
 }
+.address-details {
+    border: 1px solid #d1d1d1; 
+    border-radius: 15px; 
+    padding: 30px; 
+    background-color: #ffffff; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    max-width: 600px; 
+    margin: 20px auto; 
+    transition: box-shadow 0.3s, transform 0.3s; 
+}
+
+.address-details:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-3px); 
+}
+
+.address-details p {
+    margin: 10px 0; 
+    color: #444; 
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+}
+
+.address-details-body {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 20px; 
+}
+
+.address-details-left{
+    width: 60%;
+}
+.address-details-right {
+    width: 30%; 
+}
+
+.address-details button {
+    margin-top: 20px; 
+    padding: 12px 20px; 
+    background-color: #ff6b35;
+    color: white; 
+    border: none; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 1rem; 
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.address-details button:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+}
 
 @keyframes RighttopLeft {
     0% {

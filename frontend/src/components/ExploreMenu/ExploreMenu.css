@@ -39,16 +39,30 @@
 .explore-menu-list::-webkit-scrollbar {
     display: none;
 }
-.img-background{
-    position: absolute;
-    background-repeat: repeat;
-    background-size: cover;
-    animation: moveUpDown 30s ease-in-out infinite;
-} 
-.img-background img{
+.img-background {
     width: 100%;
-    scale: 1.3;
-} 
+    height: auto;
+    overflow: hidden; 
+    position: absolute;
+    top: 115px;
+    left: 0;
+}
+
+.img-background img {
+    width: 100%;
+    transform: scale(1.3); 
+    transform-origin: center; 
+    animation: moveUpDown 10s infinite;
+}
+
+
+.img-background img {
+    width: 100%;
+    height: auto;
+    transform: scale(1.3); 
+    transform-origin: center;
+}
+
 .explore-menu-list-item img {
     width: 7.5vw;
     min-width: 80px;

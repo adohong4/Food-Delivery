@@ -23,6 +23,8 @@ export const FoodItem = ({ id, name, price, description, image }) => {
         <div className='food-item'>
             <div className="food-item-img-container">
                 <img src={url + "/images/" + image} alt="" className="food-item-image" />
+                <div class="overlay overlay-1"></div>
+                <div class="overlay overlay-2"></div>
                 {!cartItems[id]
                     ? <img className='add' onClick={() => handleAddToCart(id)} src={assets.add_icon_white} alt="" />
                     : <div className='food-item-counter'>
