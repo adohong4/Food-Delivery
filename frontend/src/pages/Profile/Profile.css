@@ -1,21 +1,20 @@
-
 .profile {
-    position: relative; 
+    position: relative;
     background-color: #ffffff;
     border-radius: 15px;
     padding: 30px;
-    padding-top: 100px; 
+    padding-top: 100px;
 }
 
 
 .container {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
 }
 
 .profile-info {
-    flex: 1; 
-    margin-right: 20px; 
+    flex: 1;
+    margin-right: 20px;
     padding: 20px;
     position: relative;
     z-index: 9;
@@ -25,7 +24,7 @@
 }
 
 .my-address {
-    flex: 1; 
+    flex: 1;
     padding: 20px;
     position: relative;
     z-index: 9;
@@ -78,7 +77,7 @@ h2.border-bt {
 
 
 .address-list {
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .my-address-addresses {
@@ -110,49 +109,118 @@ h2.border-bt {
 .address-details p {
     margin: 5px 0;
 }
-.background{
+
+.background {
     display: flex;
 }
-.background-left img{
+
+.background-left img {
     width: 25%;
     position: absolute;
-    top:0;
+    top: 0;
     /* animation: RighttopLeft 10s ease-in-out infinite alternate; */
 }
-.background-right img{
+
+.background-right img {
     width: 25%;
     position: absolute;
-    bottom:0;
+    bottom: 0;
     right: 0;
     /* animation: LefttoRight 10s ease-in-out infinite alternate;  */
 }
 
+.address-details {
+    border: 1px solid #d1d1d1;
+    border-radius: 15px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.address-details:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.address-details p span {
+    color: #000;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.address-details p {
+    margin: 5px 0;
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.address-details-body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.address-details-left {
+    width: 90%;
+}
+
+.address-details-right {
+    width: 10%;
+}
+
+.address-details button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.address-details button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
 @keyframes RighttopLeft {
     0% {
-        transform: translate(100%, -100%); 
-        opacity: 0; 
+        transform: translate(100%, -100%);
+        opacity: 0;
     }
+
     50% {
-        transform: translate(0, 0); 
-        opacity: 1; 
+        transform: translate(0, 0);
+        opacity: 1;
     }
+
     100% {
-        transform: translate(-100%, 0); 
-        opacity: 0; 
+        transform: translate(-100%, 0);
+        opacity: 0;
     }
 }
 
 @keyframes LefttoRight {
     0% {
-        transform: translate(-100%, 0); 
-        opacity: 0; 
+        transform: translate(-100%, 0);
+        opacity: 0;
     }
+
     50% {
-        transform: translate(0, 0); 
-        opacity: 1; 
+        transform: translate(0, 0);
+        opacity: 1;
     }
+
     100% {
         transform: translate(100%, -100%);
-        opacity: 0; 
+        opacity: 0;
     }
 }

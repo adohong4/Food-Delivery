@@ -10,7 +10,7 @@
     z-index: 99;
 }
 
-
+ 
 .nav-contents {
     position: absolute;
     display: flex;
@@ -26,6 +26,7 @@
 .nav-contents h2 {
     font-weight: 500;
     color: white;
+    text-align: left;
     font-size: max(4.5vw, 22px);
 }
 
@@ -44,6 +45,12 @@
     border-radius: 50px;
     cursor: pointer;
     font-size: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-contents button:hover {
+    background-color: #DDD; 
+    transform: scale(1.05); 
 }
 
 

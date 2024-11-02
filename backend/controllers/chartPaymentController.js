@@ -1,4 +1,5 @@
 import orderModel from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
 
 // Helper function to get ISO week number
 const getISOWeek = (date) => {
@@ -125,4 +126,41 @@ const getPayments = async (req, res) => {
     }
 };
 
-export { getPayments };
+
+const getUserStatistics = async (req, res) => {
+    const { period } = req.query;
+    const today = new Date();
+
+    try {
+        let pastDate;
+        let groupId;
+
+        switch (period) {
+            case "week":
+                pastDate = new Date(today);
+                pastDate.setDate(today.getDate() - 7);
+                groupId = { day: { $dayOfMonth: "$createdAt" }, month: { $month: "$createdAt" }, year: { $year: "$createdAt" } };
+                break;
+            case "year":
+                pastDate = new Date(today);
+                pastDate.setFullYear(today.getFullYear() - 1);
+                groupId = { month: { $month: "$createdAt" }, year: { $year: "$createdAt" } };
+                break;
+            default:
+                return res.status(400).json({ success: false, message: "Invalid period" });
+        }
+
+        const users = await userModel.aggregate([
+            { $match: { createdAt: { $gte: pastDate, $lte: today } } },
+            { $group: { _id: groupId, totalUsers: { $sum: 1 } } },
+            { $sort: { "_id.year": 1, "_id.month": 1, "_id.day": 1 } }
+        ]);
+
+        res.json({ success: true, users });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+export { getPayments, getUserStatistics };

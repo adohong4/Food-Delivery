@@ -7,7 +7,7 @@ import 'dotenv/config.js'
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import statisticalRouter from "./routes/statisticalRoute.js";
-import chartPaymentRouter from "./routes/chartPaymentRoute.js";
+import chartRouter from "./routes/chartRoute.js";
 import tableRouter from "./routes/tableRoute.js";
 import commentRouter from "./routes/commentRoute.js";
 
@@ -30,7 +30,7 @@ app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/statistical", statisticalRouter)
-app.use("/api/chart", chartPaymentRouter)
+app.use("/api/chart", chartRouter)
 app.use("/api/table", tableRouter)
 app.use("/api/comment", commentRouter)
 // db connection

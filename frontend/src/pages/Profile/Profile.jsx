@@ -96,21 +96,27 @@ const Profile = () => {
                                 <div key={index} className="my-address-addresses">
                                     <img src={assets.parcel_icon} alt="" className="address-icon" />
                                     <div className="address-details">
-                                        <p><span>{address.firstname} {address.lastname}</span></p>
-                                        <p>{address.street}</p>
-                                        <p>{address.city}</p>
-                                        <p>{address.state}</p>
-                                        <p>{address.zipcode}</p>
-                                        <p>{address.country}</p>
-                                        <p>{address.phone}</p>
-                                        <button onClick={fetchAddresses}>Edit</button>
+                                        <p><span>{address.lastname} {address.firstname}</span></p>
+
+                                        <p></p>
+                                        <p></p>
+                                        <div className='address-details-body'>
+                                            <div className='address-details-left'>
+                                                <p>{address.street}, {address.state}, {address.city}, {address.country}, {address.zipcode}, {address.phone}</p>
+                                            </div>
+                                            <div className='address-details-right'>
+                                                <button onClick={fetchAddresses}>Edit</button>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             );
                         })}
                     </div>
                 </div>
-                
+
             </div>
             <div className='background'>
                 <div className='background-left'>
@@ -119,7 +125,7 @@ const Profile = () => {
                 <div className='background-right'>
                     <img src={assets.img1} alt="" />
                 </div>
-            </div>            
+            </div>
             {showAddressPopup && <AddressPopup setShowAddress={setShowAddressPopup} />}
         </div>
 
