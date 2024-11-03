@@ -8,11 +8,34 @@ import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'
 
 const Profile = () => {
     const { url, token } = useContext(StoreContext)
-    const [data, setData] = useState([]);
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [addresses, setAddresses] = useState([]);
     const [image, setImage] = useState(false);
     const [showAddressPopup, setShowAddressPopup] = useState(false)
 
+    //get info user by token
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(`${url}/api/user/profile`, {
+                headers: { token }
+            });
+            if (response.data.success) {
+                setName(response.data.data.name);
+                setEmail(response.data.data.email);
+                // console.log(response.data.data.name);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("There was an error fetching the addresses!", error);
+            toast.error("Failed to fetch addresses.");
+        }
+
+    };
+
+    // get info address
     const fetchAddresses = async () => {
         try {
             const response = await axios.get(`${url}/api/user/getAllUserAddresses`, {
@@ -20,7 +43,7 @@ const Profile = () => {
             });
             if (response.data.success) {
                 setAddresses(response.data.addresses);
-                console.log(response.data.addresses);
+                // console.log(response.data.addresses);
             } else {
                 toast.error(response.data.message);
             }
@@ -32,6 +55,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (token) {
+            fetchUserData();
             fetchAddresses();
         }
     }, [token]);
@@ -63,12 +87,27 @@ const Profile = () => {
 
                     <div className="form-group">
                         <p>Username</p>
-                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                        <input
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            placeholder="Type here"
+                            value={name} // Bind the value
+                            onChange={(e) => setName(e.target.value)} // Update the state on change
+                        />
                     </div>
 
                     <div className="form-group">
                         <p>Email</p>
-                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                        <input
+                            type="text"
+                            name="email"
+                            className="form-control"
+                            placeholder="Type here"
+                            value={email} // Bind the value
+                            onChange={(e) => setEmail(e.target.value)} // Update the state on change
+                            readOnly
+                        />
                     </div>
 
                     <div className="form-group">

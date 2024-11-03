@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import validator from "validator"
-
+import fs from 'fs';
 
 
 //login user
@@ -138,6 +138,72 @@ const addUserAddress = async (req, res) => {
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
+
+//Get user by token
+const getUserInfo = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.body.userId);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        const filteredUser = {
+            name: user.name,
+            email: user.email,
+            image: user.image,
+        };
+
+        res.json({ success: true, data: filteredUser });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error" });
+    }
+};
+
+
+//add information user
+const updateInformation = async (req, res) => {
+    try {
+        const userId = req.user._id; // Lấy ID người dùng từ req.user
+        const user = await userModel.findById(userId); // Tìm người dùng trong database
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "Người dùng không tồn tại" });
+        }
+
+        const updates = {};
+
+        // Cập nhật tên người dùng
+        if (req.body.name) {
+            updates.name = req.body.name;
+        }
+
+        // Cập nhật hình ảnh nếu có
+        if (req.file) {
+            updates.image = req.file.filename; // Giả sử bạn đang sử dụng multer để xử lý file
+        }
+
+        // Cập nhật mật khẩu nếu có
+        if (req.body.password) {
+            if (req.body.password.length < 8) {
+                return res.status(400).json({ success: false, message: "Mật khẩu phải dài ít nhất 8 ký tự" });
+            }
+            const salt = await bcrypt.genSalt(10);
+            updates.password = await bcrypt.hash(req.body.password, salt);
+        }
+
+        // Cập nhật thông tin người dùng trong database
+        const updatedUser = await userModel.findByIdAndUpdate(userId, updates, { new: true });
+
+        res.json({ success: true, message: "Thông tin người dùng đã được cập nhật", data: updatedUser });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Lỗi cập nhật thông tin người dùng" });
+    }
+};
+
+
 
 //get all list user address by id
 const getAllUserAddresses = async (req, res) => {
@@ -290,6 +356,6 @@ const deleteUserById = async (req, res) => {
 
 export {
     loginUser, registerUser, listUser,
-    getUserById, updateUserById, getUserByName,
-    deleteUserById, checkToken, addUserAddress, getAllUserAddresses
+    getUserById, updateUserById, getUserByName, getUserInfo,
+    deleteUserById, checkToken, addUserAddress, getAllUserAddresses, updateInformation
 };
