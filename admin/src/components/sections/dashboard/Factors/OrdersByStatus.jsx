@@ -32,12 +32,12 @@ const OrdersByStatus = ({ url }) => {
                 <h3>Orders by Status</h3>
                 <div className="info-cards">
                     <ul>
-                        {stats.ordersByStatus.map((status, index) => (
-                            <div className="info-card">
-                                <li key={index}>
+                        {stats.ordersByStatus.map((status) => (
+                            <div className="info-card" key={status._id}>
+                                <li>
                                     <span className="status-label">{status._id}</span>
                                 </li>
-                                <li key={index}>
+                                <li>
                                     <span className="status-count">{status.count}</span>
                                 </li>
                             </div>

@@ -128,16 +128,15 @@ const List = ({ url, category }) => {
                     <p>All Foods List</p>
                 </div>
                 <div className="sort-container">
-                    <select id="sort" onChange={handleSortChange}>
+                    <select id="sort" onChange={handleSortChange} value={sort}>
                         <option value="Sort By">Sort By</option>
                         <option value="Asc">Asc</option>
                         <option value="Desc">Desc</option>
                     </select>
                 </div>
 
-
                 <div className="selected-container">
-                    <select id="category" onChange={handleCategoryChange}>
+                    <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
                         <option value="All" selected>All</option>
                         <option value="Salad">Salad</option>
                         <option value="Rolls">Rolls</option>

@@ -1,11 +1,12 @@
-import React from 'react';
-import './Orders.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { assets } from '../../assets/assets';
 import ReactPaginate from 'react-paginate';
-import Factors from '../../components/sections/dashboard/Factors/Factors';
+import OrdersByStatus from '../../components/sections/dashboard/Factors/OrdersByStatus';
+import OrderItem from '../../components/OrderItem';
+import OrderPopup from '../../components/PopUp/OrderPopup';
+import PrintInvoice from '../../components/PrintInvoice';
+import './Orders.css';
 
 const Orders = ({ url }) => {
     const [orders, setOrders] = useState([]);
@@ -25,98 +26,6 @@ const Orders = ({ url }) => {
             toast.error("Error");
         }
     };
-    const printInvoice = () => {
-        const printWindow = window.open('', '', 'width=600,height=400');
-        printWindow.document.write(`
-            <html>
-            <head>
-                <title>Invoice</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        background-color: #f4f4f4;
-                        color: #333;
-                        margin: 0;
-                        padding: 20px;
-                    }
-                    .invoice {
-                        background: #fff;
-                        padding: 20px;
-                        border-radius: 8px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        max-width: 600px;
-                        margin: auto;
-                    }
-                    h2 {
-                        text-align: center;
-                        color: #2c3e50;
-                    }
-                    h4 {
-                        color: #34495e;
-                        margin-top: 20px;
-                    }
-                    p, li {
-                        margin: 5px 0;
-                    }
-                    .total-amount {
-                        font-size: 18px;
-                        font-weight: bold;
-                        color: #27ae60;
-                        text-align: right;
-                    }
-                    .divider {
-                        margin: 20px 0;
-                        height: 1px;
-                        background-color: #e0e0e0;
-                    }
-                    .customer-info, .order-items {
-                        margin-bottom: 20px;
-                    }
-                    ul {
-                        list-style-type: none;
-                        padding: 0;
-                    }
-                    li {
-                        padding: 5px;
-                        border-bottom: 1px solid #e0e0e0;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="invoice">
-                    <h2>Order Details</h2>
-                    <div class="customer-info">
-                        <h4>Customer Information</h4>
-                        <p><strong>Name:</strong> ${selectedOrder.address.firstName} ${selectedOrder.address.lastName}</p>
-                        <p><strong>Phone:</strong> ${selectedOrder.address.phone}</p>
-                        <p><strong>Address:</strong> ${selectedOrder.address.street}, ${selectedOrder.address.state}, ${selectedOrder.address.country}, ${selectedOrder.address.zipcode}</p>
-                    </div>
-                    
-                    <div class="divider"></div>
-
-                    <div class="order-items">
-                        <h4>Order Items</h4>
-                        <ul>
-                            ${selectedOrder.items.map(item => `
-                                <li>${item.name} x ${item.quantity}</li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="divider"></div>
-
-                    <div class="total-amount">
-                        <h4>Total Amount:</h4>
-                        <p>$${selectedOrder.amount}</p>
-                    </div>
-                </div>
-            </body>
-            </html>
-                                
-        `);
-        printWindow.document.close();
-        printWindow.print();
-    };
 
     const statusHandler = async (event, orderId) => {
         const selectedValue = event.target.value;
@@ -128,7 +37,6 @@ const Orders = ({ url }) => {
 
         if (response.data.success) {
             await fetchAllOrders(currentPage);
-
         }
 
         console.log(`Order ${orderId}: ${selectedValue}`);
@@ -143,8 +51,8 @@ const Orders = ({ url }) => {
             fetchAllOrders(currentPage);
         }, 60000); // 1 minutes = 60000 ms
 
-        return () => clearInterval(interval); // reload when time runs out!
-    },)
+        return () => clearInterval(interval);
+    }, [currentPage]);
 
     const handlePageClick = (event) => {
         setCurrentPage(+event.selected + 1);
@@ -161,50 +69,17 @@ const Orders = ({ url }) => {
     };
 
     return (
-
         <div className="order-name">
-            <Factors url={url} />
+            <OrdersByStatus url={url} />
             <h3>Order Page</h3>
             <div className="order-list">
                 {orders.map((order, index) => (
-                    <div key={index} className="order-item" >
-                        <img src={assets.parcel_icon} alt="" />
-                        <div onClick={() => openPopup(order)}>
-                            <p className="order-food-item">
-                                {order.items.map((item, idx) => (
-                                    <span key={idx}>
-                                        {item.name} x {item.quantit}{idx < order.items.length - 1 ? ', ' : ''}
-                                    </span>
-                                ))}
-                            </p>
-                            <p className="order-item-name">
-                                {order.address.firstName} {order.address.lastName}
-                            </p>
-                            <p>
-                                {order.address.street}, {order.address.state}, {order.address.country}, {order.address.zipcode}
-                            </p>
-                        </div>
-                        <div className="order-item-phone">{order.address.phone}</div>
-                        <p>Items: {order.items.length}</p>
-                        <p>${order.amount}</p>
-                        <select
-                            onChange={(event) => statusHandler(event, order._id)}
-                            value={order.status}
-                            style={{
-                                backgroundColor: order.status === "Wait for confirmation" ? "#2c3e50" :
-                                    order.status === "Food processing" ? "#d35400" :
-                                        order.status === "Out for delivery" ? "#f39c12" :
-                                            order.status === "Delivered" ? "#27ae60" :
-                                                "#ecf0f1",
-                                color: ["Wait for confirmation", "Food processing", "Out for delivery", "Delivered"].includes(order.status) ? "white" : "black"
-                            }}
-                        >
-                            <option value="Wait for confirmation">Wait for confirmation</option>
-                            <option value="Food processing">Food processing</option>
-                            <option value="Out for delivery">Out for delivery</option>
-                            <option value="Delivered">Delivered</option>
-                        </select>
-                    </div>
+                    <OrderItem
+                        key={index}
+                        order={order}
+                        openPopup={openPopup}
+                        statusHandler={statusHandler}
+                    />
                 ))}
             </div>
             <ReactPaginate
@@ -229,48 +104,12 @@ const Orders = ({ url }) => {
 
             {/* Popup for Order information */}
             {isPopupOpen && (
-                <div className="popUp">
-                    <div className="popup-order-content">
-                        <h2>Order Details</h2>
-                        {selectedOrder && (
-                            <div>
-                                <h4>Customer Information</h4>
-                                <p>Name: {selectedOrder.address.firstName} {selectedOrder.address.lastName}</p>
-                                <p>Phone: {selectedOrder.address.phone}</p>
-                                <p>Address: {selectedOrder.address.street}, {selectedOrder.address.state}, {selectedOrder.address.country}, {selectedOrder.address.zipcode}</p>
-
-                                {/* Hiển thị trạng thái với màu sắc */}
-                                <h4>Status</h4>
-                                <p style={{
-                                    color: selectedOrder.status === "Wait for confirmation" ? "#2c3e50" :
-                                        selectedOrder.status === "Food processing" ? "#d35400" :
-                                            selectedOrder.status === "Out for delivery" ? "#f39c12" :
-                                                selectedOrder.status === "Delivered" ? "#27ae60" :
-                                                    "#ecf0f1"
-                                }}>
-                                    {selectedOrder.status}
-                                </p>
-
-                                <h4>Order Items</h4>
-                                <ul>
-                                    {selectedOrder.items.map((item, index) => (
-                                        <li key={index}>
-                                            {item.name} x {item.quantity}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <h4>Total Amount</h4>
-                                <p>${selectedOrder.amount}</p>
-                                <div className='btn-group'>
-                                    <button onClick={closePopup}>Close</button>
-                                    <button onClick={printInvoice}>Print Invoice</button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <OrderPopup
+                    selectedOrder={selectedOrder}
+                    closePopup={closePopup}
+                    printInvoice={<PrintInvoice selectedOrder={selectedOrder} />}
+                />
             )}
-
         </div>
     );
 };

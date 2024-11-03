@@ -11,7 +11,9 @@ const User = ({ url }) => {
     const [totalUser, setTotalUser] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchTerm, setSearchTerm] = useState(''); // State for search term
+    const [searchTerm, setSearchTerm] = useState('');// State for search term
+    const [sortNameOrder, setSortNameOrder] = useState('asc');
+    const [sortEmailOrder, setSortEmailOrder] = useState('asc');
 
     // Function to fetch the user list
     const fetchList = async (page = 1) => {
@@ -103,6 +105,20 @@ const User = ({ url }) => {
         setCurrentPage(+event.selected + 1);
     }
 
+    const sortByName = () => {
+        const newOrder = sortNameOrder === 'asc' ? 'desc' : 'asc';
+        setSortNameOrder(newOrder);
+        const sortedList = [...list].sort((a, b) => newOrder === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
+        setList(sortedList);
+    };
+
+    const sortByEmail = () => {
+        const newOrder = sortEmailOrder === 'asc' ? 'desc' : 'asc';
+        setSortEmailOrder(newOrder);
+        const sortedList = [...list].sort((a, b) => newOrder === 'asc' ? a.email.localeCompare(b.email) : b.email.localeCompare(a.email));
+        setList(sortedList);
+    };
+
     return (
         <div className='user-list-container'>
             <p>User List</p>
@@ -118,8 +134,12 @@ const User = ({ url }) => {
             <table className="user-list-table">
                 <thead>
                     <tr className="table-header">
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th onClick={sortByName} style={{ cursor: 'pointer' }}>
+                            Name {sortNameOrder === 'asc' ? '↑' : '↓'}
+                        </th>
+                        <th onClick={sortByEmail} style={{ cursor: 'pointer' }}>
+                            Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
+                        </th>
                         <th>Password</th>
                         <th>Delete</th>
                         <th>Actions</th>

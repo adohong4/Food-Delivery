@@ -13,11 +13,11 @@ export const Sidebar = () => {
                 </div>
                 <div className="sidebar-options">
                     <NavLink to='/dashboard' className="sidebar-option">
-                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Dash Board</p>
                     </NavLink>
                     <NavLink to='/analytics' className="sidebar-option">
-                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Analytics</p>
                     </NavLink>
                     <NavLink to='/add' className="sidebar-option">
@@ -37,7 +37,7 @@ export const Sidebar = () => {
                         <p>Orders item</p>
                     </NavLink>
                     <NavLink to='/comment' className="sidebar-option">
-                        <i class="bi bi-chat-left-text"></i>
+                        <i className="bi bi-chat-left-text"></i>
                         <p>Comment Order</p>
                     </NavLink>
                     <div className='Logout'>

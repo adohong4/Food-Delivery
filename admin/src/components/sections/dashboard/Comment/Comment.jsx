@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Comment.css';
 import { toast } from 'react-toastify';
@@ -39,35 +39,38 @@ const TopComments = ({ url }) => {
 
     return (
         <div>
-
             <div className='cmt-main'>
                 <div className='cmt-right'>
                     <h2>Our Customers’ Insights</h2>
-                    <Slider {...settings}>
-                        {comments.map((comment, index) => (
-                            <div key={index} className="comment-slide">
-                                <div className="comment-content"> {/* Khối chứa các thẻ <p> */}
-                                    <p><strong>Email:</strong> {comment.email}</p>
-                                    <p><strong>Order Id:</strong> {comment.orderId}</p>
-                                    <p>
-                                        <strong>Rating:</strong>
-                                        <ReactStars
-                                            count={5}
-                                            value={comment.rating}
-                                            size={24}
-                                            activeColor="#ffd700"
-                                            edit={false}
-                                        />
-                                    </p>
-                                    <p><strong>Comment:</strong> {comment.comment}</p>
+                    {comments.length > 0 ? (
+                        <Slider {...settings}>
+                            {comments.map((comment) => (
+                                <div key={comment.id || `${comment.email}-${comment.orderId}`} className="comment-slide">
+                                    <div className="comment-content">
+                                        <strong>Email:</strong> <span>{comment.email}</span>
+                                        <strong>Order Id:</strong> <span>{comment.orderId}</span>
+                                        <div>
+                                            <strong>Rating:</strong>
+                                            <ReactStars
+                                                count={5}
+                                                value={comment.rating}
+                                                size={24}
+                                                activeColor="#ffd700"
+                                                edit={false}
+                                            />
+                                        </div>
+                                        <strong>Comment:</strong>
+                                        <p>{comment.comment}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </Slider>
+                            ))}
+                        </Slider>
+                    ) : (
+                        <p>No comments available.</p>
+                    )}
                 </div>
             </div>
         </div>
-
     );
 };
 

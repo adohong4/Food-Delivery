@@ -5,7 +5,7 @@ import PieChart from './PieChart.jsx';
 
 const ChartContainer = ({ url }) => {
     return (
-        <div clas>
+        <div>
             <h1>Payment Charts</h1>
             <Chart url={url} />
             <LineChart url={url} />
