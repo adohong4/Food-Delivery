@@ -3,6 +3,7 @@ import './User.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
+import ListPopup from '../../components/PopUp/UserPopup';
 
 const User = ({ url }) => {
     const [list, setList] = useState([]);
@@ -184,37 +185,12 @@ const User = ({ url }) => {
 
             {/* Popup Form */}
             {showPopup && (
-                <div className="popup">
-                    <div className="popup-content">
-                        <h3>Update User</h3>
-
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={currentUser.name}
-                            onChange={handleChange}
-                        />
-
-                        <label>Email:</label>
-                        <input
-                            type="text"
-                            name="email"
-                            value={currentUser.email}
-                            onChange={handleChange}
-                        />
-
-                        <label>Password:</label>
-                        <input
-                            type="text"
-                            name="password"
-                            onChange={handleChange}
-                        />
-
-                        <button onClick={handleUpdate}>Update</button>
-                        <button onClick={closePopup}>Cancel</button>
-                    </div>
-                </div>
+                <ListPopup
+                    currentUser={currentUser}
+                    onChange={handleChange}
+                    onUpdate={handleUpdate}
+                    onClose={closePopup}
+                />
             )}
         </div>
     );
