@@ -16,10 +16,10 @@ export const Sidebar = () => {
                         <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Dash Board</p>
                     </NavLink>
-                    <NavLink to='/analytics' className="sidebar-option">
+                    {/* <NavLink to='/analytics' className="sidebar-option">
                         <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Analytics</p>
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink to='/add' className="sidebar-option">
                         <i className="bi bi-plus-circle"></i>
                         <p>Add item</p>

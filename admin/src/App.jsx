@@ -29,7 +29,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Navigate to="/add" replace />} />
             <Route path="/dashboard" element={<Dashboard url={url} />} />
-            <Route path="/analytics" element={<Analytics url={url} />} />
+            {/* <Route path="/analytics" element={<Analytics url={url} />} /> */}
             <Route path="/add" element={<Add url={url} />} />
             <Route path="/list" element={<List url={url} />} />
             <Route path="/user" element={<User url={url} />} />

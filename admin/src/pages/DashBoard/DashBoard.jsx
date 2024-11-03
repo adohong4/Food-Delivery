@@ -6,15 +6,19 @@ import UserFactors from '../../components/sections/dashboard/Factors/UserFactor.
 import TopSeller from '../../components/sections/table/TopSeller/TopSeller.jsx';
 import OrdersByStatus from '../../components/sections/dashboard/Factors/OrdersByStatus.jsx';
 import TopComments from '../../components/sections/dashboard/Comment/Comment.jsx';
+import Factors from '../../components/sections/dashboard/Factors/Factors.jsx';
+import LineChart from '../../components/sections/dashboard/Statistics/LineChart.jsx';
 
 
 const Dashboard = ({ url }) => {
     return (
         <div className='Dashboard'>
+            <Factors url={url} />
             <div className='Chart'>
                 <PaymentLineChart url={url} />
                 <DoughnutChart url={url} />
             </div>
+            <LineChart url={url} />
             <div>
                 <UserFactors url={url} />
                 <TopComments url={url} />
