@@ -59,7 +59,7 @@ const createToken = (id) => {
     return jwt.sign(
         { id },
         process.env.JWT_SECRET,
-        { expiresIn: '1h' }
+        { expiresIn: '3h' }
     );
 }
 
@@ -335,6 +335,38 @@ const updateUserById = async (req, res) => {
     }
 }
 
+const updateUserProfile = async (req, res) => {
+    try {
+        const userId = req.body.userId;
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        const updates = {};
+        if (req.body.name) updates.name = req.body.name;
+
+        if (req.body.password) {
+            if (req.body.password.length < 8) {
+                return res.status(400).json({ success: false, message: "Password must be at least 8 characters long" });
+            }
+            // Hash new password
+            const salt = await bcrypt.genSalt(10);
+            updates.password = await bcrypt.hash(req.body.password, salt);
+        }
+
+        // update user
+        const updatedUser = await userModel.findByIdAndUpdate(userId, updates, { new: true });
+
+        res.json({ success: true, message: "User Updated", data: updatedUser });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+
 
 //delete User By Id
 const deleteUserById = async (req, res) => {
@@ -356,6 +388,6 @@ const deleteUserById = async (req, res) => {
 
 export {
     loginUser, registerUser, listUser,
-    getUserById, updateUserById, getUserByName, getUserInfo,
-    deleteUserById, checkToken, addUserAddress, getAllUserAddresses, updateInformation
+    getUserById, updateUserById, getUserByName, updateInformation, updateUserProfile,
+    deleteUserById, checkToken, addUserAddress, getAllUserAddresses, getUserInfo,
 };

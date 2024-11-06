@@ -1,7 +1,7 @@
 import express from "express"
 import {
     loginUser, registerUser, listUser, getUserInfo,
-    getUserById, getUserByName, updateUserById, updateInformation,
+    getUserById, getUserByName, updateUserById, updateInformation, updateUserProfile,
     deleteUserById, checkToken, addUserAddress, getAllUserAddresses
 } from "../controllers/userController.js";
 import multer from "multer"
@@ -31,6 +31,7 @@ userRouter.post("/deleteUser/", deleteUserById);
 userRouter.get("/checkToken", checkToken);
 userRouter.post("/addUserAddress", authMiddleware, addUserAddress)
 userRouter.get("/getAllUserAddresses", authMiddleware, getAllUserAddresses);
+userRouter.put("/updateProfile", authMiddleware, updateUserProfile);
 
 
 

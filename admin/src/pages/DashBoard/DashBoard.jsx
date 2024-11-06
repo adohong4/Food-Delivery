@@ -15,17 +15,17 @@ const Dashboard = ({ url }) => {
             <Factors url={url} />
             <div className='Chart'>
                 <PaymentLineChart url={url} />
-                <DoughnutChart url={url} />
             </div>
-                
+
             <div>
-                <TopComments url={url} />
+                {/* <TopComments url={url} /> */}
                 <LineChart url={url} />
             </div>
             <div className='section_das'>
                 <OrdersByStatus url={url} />
                 <TopSeller url={url} />
             </div>
+            <DoughnutChart url={url} />
 
         </div>
     )
