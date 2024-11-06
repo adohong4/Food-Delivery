@@ -1,8 +1,8 @@
 .sidebar {
-    width: 13vw;
+    width: 10vw;
     min-height: 100%;
     border-top: 0;
-    font-size: max(0.8vw, 10px);
+    font-size: 1em; 
     background: #000;
     position: relative;
     z-index: 999;
@@ -16,6 +16,7 @@
     color: #fff; 
     margin-bottom: 0px !important;
     transition: color 0.3s ease; 
+    font-size: 0.9em;
 }
 
 .sidebar .sidebar-options .sidebar-option.active i,
@@ -24,11 +25,13 @@
 }
 
 .sidebar-options {
-    padding-top: 50px;
     padding: 10%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center; /* Căn giữa các mục trong sidebar */
+    align-items: center;
+    height: 100%;
 }
 
 .sidebar-option {
@@ -36,13 +39,16 @@
     align-items: center;
     gap: 5%;
     padding: 8px 10px;
-    border-radius: 3px 0px 0px 3px;
-    cursor: pointer;
     border-radius: 50px;
-    opacity: 0.7; 
-    transform: translateX(-20px); 
+    cursor: pointer;
+    opacity: 0.7;
+    transform: translateX(-20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    justify-content: flex-start; /* Để căn các phần tử con về bên trái */
+    text-align: left;
+    width: 100%; /* Để các phần tử con chiếm hết chiều rộng của .sidebar-option */
 }
+
 
 .sidebar-option:hover {
     color: #000;

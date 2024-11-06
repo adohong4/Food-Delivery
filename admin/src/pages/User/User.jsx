@@ -126,12 +126,15 @@ const User = ({ url }) => {
             <div className="search-container">
                 <input
                     type="text"
-                    placeholder="Search by name"
+                    placeholder="Type to search.."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch} >
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
+
             <table className="user-list-table">
                 <thead>
                     <tr className="table-header">

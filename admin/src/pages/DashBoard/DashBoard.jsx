@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import DoughnutChart from '../../components/sections/dashboard/Statistics/DoughnutChart.jsx';
 import PaymentLineChart from '../../components/sections/dashboard/Statistics/PaymentLineChart.jsx';
-import UserFactors from '../../components/sections/dashboard/Factors/UserFactor.jsx';
 import TopSeller from '../../components/sections/table/TopSeller/TopSeller.jsx';
 import OrdersByStatus from '../../components/sections/dashboard/Factors/OrdersByStatus.jsx';
 import TopComments from '../../components/sections/dashboard/Comment/Comment.jsx';
@@ -18,12 +17,12 @@ const Dashboard = ({ url }) => {
                 <PaymentLineChart url={url} />
                 <DoughnutChart url={url} />
             </div>
-            <LineChart url={url} />
+                
             <div>
-                <UserFactors url={url} />
                 <TopComments url={url} />
+                <LineChart url={url} />
             </div>
-            <div>
+            <div className='section_das'>
                 <OrdersByStatus url={url} />
                 <TopSeller url={url} />
             </div>

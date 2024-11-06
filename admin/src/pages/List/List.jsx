@@ -127,40 +127,42 @@ const List = ({ url, category }) => {
                 <div className='col-lg-6 tittle-right'>
                     <p>All Foods List</p>
                 </div>
-                <div className="sort-container">
-                    <select id="sort" onChange={handleSortChange} value={sort}>
-                        <option value="Sort By">Sort By</option>
-                        <option value="Asc">Asc</option>
-                        <option value="Desc">Desc</option>
-                    </select>
-                </div>
+                <div className='col-lg-6 list-left'>
+                    <div className="sort-container">
+                        <select id="sort" onChange={handleSortChange} value={sort}>
+                            <option value="Sort By">Sort By</option>
+                            <option value="Asc">Asc</option>
+                            <option value="Desc">Desc</option>
+                        </select>
+                    </div>
 
-                <div className="selected-container">
-                    <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-                        <option value="All" selected>All</option>
-                        <option value="Salad">Salad</option>
-                        <option value="Rolls">Rolls</option>
-                        <option value="Deserts">Deserts</option>
-                        <option value="Sandwich">Sandwich</option>
-                        <option value="Drink">Drink</option>
-                        <option value="Pure Veg">Pure Veg</option>
-                        <option value="Pasta">Pasta</option>
-                        <option value="Noodles">Noodles</option>
-                    </select>
-                </div>
-                <div className='col-lg-6 search-left'>
-                    <div className="search-container">
-                        <input
-                            type="text"
-                            placeholder="Search by Food name"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button onClick={handleSearch}>Search</button>
+                    <div className="selected-container">
+                        <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+                            <option value="All" selected>All</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Rolls">Rolls</option>
+                            <option value="Deserts">Deserts</option>
+                            <option value="Sandwich">Sandwich</option>
+                            <option value="Drink">Drink</option>
+                            <option value="Pure Veg">Pure Veg</option>
+                            <option value="Pasta">Pasta</option>
+                            <option value="Noodles">Noodles</option>
+                        </select>
+                    </div>
+                    <div className='search-left'>
+                        <div className="search-container">
+                            <input
+                                type="text"
+                                placeholder="Search by Food name"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button onClick={handleSearch}><i class="bi bi-search"></i></button>
+                        </div>
                     </div>
                 </div>
-
-            </div>
+                </div>
+                
 
 
 

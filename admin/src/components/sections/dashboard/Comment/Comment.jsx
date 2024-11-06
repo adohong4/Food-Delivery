@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Comment.css';
+import './Comment-admin.css';
 import { toast } from 'react-toastify';
 import ReactStars from "react-rating-stars-component";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 const TopComments = ({ url }) => {
     const [comments, setComments] = useState([]);
@@ -35,6 +36,8 @@ const TopComments = ({ url }) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        autoplay: true,       
+        autoplaySpeed: 2500,
     };
 
     return (

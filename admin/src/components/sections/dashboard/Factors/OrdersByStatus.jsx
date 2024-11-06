@@ -27,18 +27,18 @@ const OrdersByStatus = ({ url }) => {
     }, [url]);
 
     return (
-        <div className="user-factors">
-            <div className="orders-status">
+        <div className="dashboard-stats">
+            <div className="order-status">
                 <h3>Orders by Status</h3>
-                <div className="info-cards">
-                    <ul>
+                <div className="status-cards">
+                    <ul className="status-list">
                         {stats.ordersByStatus.map((status) => (
-                            <div className="info-card" key={status._id}>
+                            <div className="status-card" key={status._id}>
                                 <li>
-                                    <span className="status-label">{status._id}</span>
+                                    <span className="status-name">{status._id}</span>
                                 </li>
                                 <li>
-                                    <span className="status-count">{status.count}</span>
+                                    <span className="status-amount">{status.count}</span>
                                 </li>
                             </div>
                         ))}
@@ -46,6 +46,7 @@ const OrdersByStatus = ({ url }) => {
                 </div>
             </div>
         </div>
+
     );
 };
 

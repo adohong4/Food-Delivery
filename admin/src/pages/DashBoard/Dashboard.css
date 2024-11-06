@@ -25,7 +25,10 @@
     margin-bottom: 30px;
 
 }
-
+.section_das{
+    display: flex;
+    background-color: #eeeeee;
+}
 .orders {
     display: flex;
 }

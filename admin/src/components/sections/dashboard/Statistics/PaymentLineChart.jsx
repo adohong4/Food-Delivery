@@ -42,8 +42,8 @@ const PaymentLineChart = ({ url }) => {
                 label: 'Total Amount',
                 data: payments.map(payment => payment.totalAmount),
                 fill: false, // Không tô màu dưới đường
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)', // Màu đường
+                backgroundColor: 'rgba(255, 69, 0, 1)',
+                borderColor: 'rgba(255, 69, 0, 1)', // Màu đường
                 borderWidth: 2,
                 tension: 0.35,
             },

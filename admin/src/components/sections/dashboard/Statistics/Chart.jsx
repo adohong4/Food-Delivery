@@ -60,7 +60,7 @@ const Chart = ({ url }) => {
                 <div className='orders'>
                     {/* Chart for Payments */}
                     <div className='orders-right-2'>
-                        <Bar data={chartData} options={{
+                        <Bar data ={chartData} options={{
                             responsive: true,
                             plugins: {
                                 legend: {

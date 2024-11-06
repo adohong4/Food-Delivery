@@ -24,27 +24,35 @@ const TopSeller = ({ url }) => {
         fetchList();
     }, []);
 
-    return (
-        <div className='list add flex-col'>
-            <div className="list-table">
-                <div className="list-table-format title">
-                    <b>Image</b>
-                    <b>Name</b>
-                    <b>Category</b>
-                    <b>Price</b>
-                    <b>Count</b>
-                </div>
-                {list.map((item, index) => (
-                    <div key={index} className='list-table-format'>
-                        <img src={`${url}/images/${item.image}`} alt={item.name} />
-                        <p>{item.name}</p>
-                        <p>{item.category}</p>
-                        <p>{item.price}</p>
-                        <p>{item.count}</p> {/* Hiển thị số lượng món ăn */}
-                    </div>
-                ))}
-            </div>
+    return (        
+        <div className='top-seller-container'>            
+            <table className="top-seller-table">                 
+                <thead>
+                    <tr className="top-seller-header">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {list.map((item, index) => (
+                        <tr key={index} className='top-seller-item'> 
+                            <td>
+                                <img src={`${url}/images/${item.image}`} alt={item.name} className="item-image" />
+                            </td>
+                            <td>{item.name}</td>
+                            <td>{item.category}</td>
+                            <td>{item.price}</td>
+                            <td>{item.count}</td> 
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
+
+        
     );
 };
 
