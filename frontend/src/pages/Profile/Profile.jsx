@@ -11,6 +11,7 @@ const Profile = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [addresses, setAddresses] = useState([]);
     const [image, setImage] = useState(false);
     const [showAddressPopup, setShowAddressPopup] = useState(false)
@@ -53,6 +54,26 @@ const Profile = () => {
         }
     };
 
+    //update profile
+    const updateUserProfile = async () => {
+        try {
+            const response = await axios.put(`${url}/api/user/updateProfile`, {
+                name,
+                password
+            }, {
+                headers: { token }
+            });
+            if (response.data.success) {
+                toast.success(response.data.message);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("There was an error updating the profile!", error);
+            toast.error("Failed to update profile.");
+        }
+    };
+
     useEffect(() => {
         if (token) {
             fetchUserData();
@@ -67,14 +88,14 @@ const Profile = () => {
                 <div className="profile-info">
                     <h2 className='border-bt'>Profile Information</h2>
                     <div className="form-group">
-                        <p>Upload Image</p>
+                        {/* <p>Upload Image</p>
                         <label htmlFor="image" className="d-block">
                             <img
                                 src={image ? URL.createObjectURL(image) : assets.upload_area}
                                 alt="Upload Preview"
                                 className="img-thumbnail upload-preview"
                             />
-                        </label>
+                        </label> */}
                         <input
                             onChange={(e) => setImage(e.target.files[0])}
                             type="file"
@@ -112,10 +133,17 @@ const Profile = () => {
 
                     <div className="form-group">
                         <p>Password</p>
-                        <input type="text" name='name' className="form-control" placeholder='Type here' />
+                        <input
+                            type="password"
+                            name='password'
+                            className="form-control"
+                            placeholder='Type here'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
 
-                    <button type="submit" className="btn btn-primary add-btn">
+                    <button type="submit" className="btn btn-primary add-btn" onClick={updateUserProfile}>
                         SAVE CHANGES
                     </button>
                 </div>
