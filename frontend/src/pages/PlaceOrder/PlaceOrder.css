@@ -15,7 +15,8 @@
 .place-order-left .title {
     font-size: 30px;
     font-weight: 600;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .place-order-left input {
@@ -42,7 +43,7 @@
 }
 
 .Place-address {
-    margin: 10px 0;
+    margin: 15px 0;
     display: flex;
     flex-direction: column;
 }
@@ -52,7 +53,7 @@
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid tomato;
     outline: none;
     background-color: #f9f9f9;
     color: #333;

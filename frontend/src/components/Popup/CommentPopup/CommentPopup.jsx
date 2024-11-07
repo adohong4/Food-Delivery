@@ -57,7 +57,7 @@ const CommentPopup = ({ setShowComment, orderId }) => {
                     <img className="close-icon" onClick={() => setShowComment(false)} src={assets.cross_icon} alt="Close" />
                 </div>
                 <div className="popup-content">
-                    <p className="review-title"><span>Đánh giá của bạn</span></p>
+                    <p className="review-title"><span>Your assessment</span></p>
                     <div className="rating">
                         <ReactStars
                             name="rate1"
@@ -66,7 +66,7 @@ const CommentPopup = ({ setShowComment, orderId }) => {
                             onChange={handleRatingChange}
                         />
                     </div>
-                    <p className="comment-label">Nhận xét của bạn</p>
+                    <p className="comment-label">Your comments</p>
                     <textarea
                         className="comment-textarea"
                         placeholder="Enter your comment here"
