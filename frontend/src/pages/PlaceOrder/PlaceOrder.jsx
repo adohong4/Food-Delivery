@@ -102,16 +102,17 @@ const PlaceOrder = () => {
         <form onSubmit={placeOrder} className="place-order">
             <div className="place-order-left">
                 <p className="title">Delivery Information</p>
-
-                <select onChange={handleAddressChange} defaultValue="">
-                    <option value="" disabled>Select your delivery address</option>
-                    {addresses.map((address, index) => (
-                        <option key={index} value={JSON.stringify(address)}>
-                            {address.firstname} {address.lastname}, {address.street}, {address.state}, {address.city}, {address.country}, {address.zipcode}, {address.phone}
-                        </option>
-                    ))}
-                </select>
-
+                <div className='Place-address'>
+                    <select onChange={handleAddressChange} defaultValue="">
+                        <option value="" disabled>Select your delivery address</option>
+                        {addresses.map((address, index) => (
+                            <option key={index} value={JSON.stringify(address)}>
+                                {address.firstname} {address.lastname}, {address.street}, {address.state}, {address.city}, {address.country}, {address.zipcode}, {address.phone}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                
                 <div className="multi-fields">
                     <input required name="firstName" onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First name' />
                     <input required name="lastName" onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />

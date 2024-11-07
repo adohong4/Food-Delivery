@@ -1,7 +1,7 @@
 .place-order {
     display: flex;
     align-items: start;
-    justify-content: space-between;
+    justify-content: center;
     gap: 50px;
     margin-top: 100px;
     padding: 5%;
@@ -39,4 +39,34 @@
 
 .place-order .cart-total button {
     margin-top: 30px;
+}
+
+.Place-address {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.Place-address select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+
+.Place-address option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
+.Place-address option[value=""] {
+    color: #888;
+    font-style: italic;
 }
