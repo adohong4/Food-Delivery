@@ -20,7 +20,7 @@ const CommentPopup = ({ setShowComment, orderId }) => {
 
         // Kiểm tra nếu rating là 0
         if (rating < 1) {
-            toast.error("Vui lòng chọn đánh giá từ 1 đến 5.");
+            toast.error("Pls choose rating from 1 to 5!");
             return;
         }
 
@@ -45,7 +45,7 @@ const CommentPopup = ({ setShowComment, orderId }) => {
             }
         } catch (error) {
             console.error("Error adding comment", error);
-            toast.error("Bạn đã bình luận!!");
+            toast.error("You have already commented on this order.!!");
         }
     };
 
